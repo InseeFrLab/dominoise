@@ -1,3 +1,4 @@
+
 #' Create the perturbation-parameter object containing all the parameters
 #' of the noise.
 #'
@@ -46,7 +47,7 @@ pm_params <- function(beta_dominance = 0.2,  tau_dominance = 0.9,
 #' @param ... Ignored
 #'
 #' @returns pm_params object x
-#' @export
+#' @exportS3Method
 #'
 #' @examples
 #' para <- pm_params()

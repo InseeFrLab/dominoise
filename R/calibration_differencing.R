@@ -108,7 +108,6 @@ pm_calib_diff <- function(params = NULL, beta = NULL, tau = NULL, level = 0.95) 
 #' @exportS3Method
 #' @examples
 #' plot(pm_calib_diff())
-#'
 plot.pm_calib_diff <- function(x, loss = c("CI", "EZ"), ...) {
   loss <- match.arg(loss)
   if (!requireNamespace("ggplot2", quietly = TRUE))

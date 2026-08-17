@@ -6,7 +6,6 @@
 #
 # =============================================================================
 
-
 #' Calibration of the dominance noise (sigma_nu and n)
 #'
 #' Theoretical, data-free. For every candidate `(sigma_nu, n, beta, sigma_eps)`,
@@ -38,7 +37,9 @@
 #' @export
 #' @examples
 #' # default exploration
-#' pm_calib_dominance()
+#' grid <- pm_calib_dominance()
+#' grid
+#' summary(grid)
 #'
 #' # at a committed sigma_eps
 #' para <- pm_commit_diff(pm_params())
@@ -115,10 +116,7 @@ pm_calib_dominance <- function(
 #' @returns A `data.frame` of class `pm_calib_dominance_summary`, with columns
 #'   `sigma_nu`, `sigma_eps`, `n`, `beta`, `rho_at_max`, `risk_max`,
 #'   `EZ_min`, `EZ_max`, `CI_min`, `CI_max` (losses in percent).
-#' @export
-#' @examples
-#' grid <- pm_calib_dominance()
-#' summary.pm_calib_dominance(grid)
+#' @exportS3Method
 summary.pm_calib_dominance <- function(object, ...) {
   d <- as.data.frame(object)
 
@@ -140,7 +138,7 @@ summary.pm_calib_dominance <- function(object, ...) {
   sm
 }
 
-#' @export
+#' @exportS3Method
 print.pm_calib_dominance_summary <- function(x, digits = 3, ...) {
   df  <- as.data.frame(x)
   num <- vapply(df, is.numeric, logical(1))
@@ -158,7 +156,7 @@ print.pm_calib_dominance_summary <- function(x, digits = 3, ...) {
 #' @param rows Number of summary rows to display (default 8).
 #' @param ... Ignored.
 #' @returns `x`, invisibly.
-#' @export
+#' @exportS3Method
 print.pm_calib_dominance <- function(x, rows = 8, ...) {
   rng <- function(v) sprintf("%d values in [%g, %g]",
                              length(unique(v)), min(v), max(v))
