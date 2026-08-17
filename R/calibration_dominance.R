@@ -28,8 +28,7 @@
 #'   policy of `params`, or to `c(0.05, 0.1, 0.15, 0.2, 0.25)` (as in the
 #'   differencing step).
 #' @param sigma_eps Fixed differencing noise. Default to
-#'   `params$mechanism$sigma_eps`, or to `c(0, 0.03, 0.05)` (a few illustrative
-#'   values, including the noiseless case) when no `params` is given.
+#'   `params$mechanism$sigma_eps`, or `0` when no `params` is given.
 #' @param level Confidence level for the CI loss metric (default 0.95).
 #' @param rho Internal grid of dominance levels used to locate the worst case.
 #'   Default `seq(0, 1, 0.02)`.
@@ -56,18 +55,18 @@ pm_calib_dominance <- function(
     if (!is.null(params) && !is.na(params$mechanism$sigma_eps)) {
       sigma_eps <- params$mechanism$sigma_eps
     } else {
-      sigma_eps <- c(0, 0.03, 0.05)
+      sigma_eps <- 0
     }
   }
   if (is.null(beta)) {
     if (!is.null(params)) {
       beta <- params$policy$dominance$beta
     } else {
-      beta <- c(0.05, 0.1, 0.15, 0.2, 0.25)
+      beta <- c(0.1, 0.2)
     }
   }
-  if (is.null(sigma_nu)) sigma_nu <- seq(0.05, 0.5, by = 0.05)
-  if (is.null(n))        n        <- seq(3, 12, by = 0.5)
+  if (is.null(sigma_nu)) sigma_nu <- seq(0.1, 0.5, by = 0.1)
+  if (is.null(n))        n        <- seq(3, 12, by = 3)
   if (is.null(rho))      rho      <- seq(0, 1, by = 0.02)[-1]
 
   assertthat::assert_that(
@@ -83,7 +82,7 @@ pm_calib_dominance <- function(
     n = n,
     beta = beta,
     KEEP.OUT.ATTRS = FALSE
-    )
+  )
 
   risks <- purrr::pmap_dbl(combos, assess_risk_I)
   loss_expect <- purrr::pmap_dbl(combos[, c("rho","sigma_nu","sigma_eps","n")], assess_loss_expectation)
@@ -100,4 +99,87 @@ pm_calib_dominance <- function(
   attr(out, "level") <- level
   class(out) <- c("pm_calib_dominance", "data.frame")
   out
+}
+
+#' Worst-case risk and loss range of a dominance calibration grid
+#'
+#' Reduces the rho-resolved table to one row per parameter combination
+#' `(sigma_nu, sigma_eps, n, beta)`. For each, reports where the scenario-I risk
+#' peaks and its value, and the range of the information loss: the minimum
+#' (smallest rho of the grid) and the maximum (rho = 1), in both metrics --
+#' expectation E|Z| and upper CI bound. The loss is monotone increasing in rho,
+#' so these are read at the extreme rho rows of each group.
+#'
+#' @param object A `pm_calib_dominance` table.
+#' @param ... Ignored.
+#' @returns A `data.frame` of class `pm_calib_dominance_summary`, with columns
+#'   `sigma_nu`, `sigma_eps`, `n`, `beta`, `rho_at_max`, `risk_max`,
+#'   `EZ_min`, `EZ_max`, `CI_min`, `CI_max` (losses in percent).
+#' @export
+#' @examples
+#' grid <- pm_calib_dominance()
+#' summary.pm_calib_dominance(grid)
+summary.pm_calib_dominance <- function(object, ...) {
+  d <- as.data.frame(object)
+
+  sm <- d |>
+    dplyr::group_by(sigma_nu, sigma_eps, n, beta) |>
+    dplyr::summarise(
+      rho_at_max_risk = rho[risk == max(risk)][1],
+      risk_max = max(risk),
+      EZ_min = min(EZ),
+      EZ_max = max(EZ),
+      CI_min = min(CI),
+      CI_max = max(CI),
+      .groups = "drop"
+    )
+
+  rownames(sm) <- NULL
+  attr(sm, "level") <- attr(object, "level")
+  class(sm) <- c("pm_calib_dominance_summary", "data.frame")
+  sm
+}
+
+#' @export
+print.pm_calib_dominance_summary <- function(x, digits = 3, ...) {
+  df  <- as.data.frame(x)
+  num <- vapply(df, is.numeric, logical(1))
+  df[num] <- lapply(df[num], round, digits)
+  print(df, row.names = FALSE)
+  invisible(x)
+}
+
+#' Print method for a dominance calibration grid
+#'
+#' Shows the grid's extent (rho and the parameter axes) and the worst-case
+#' risk / loss-range digest produced by [summary()].
+#'
+#' @param x A `pm_calib_dominance` table.
+#' @param rows Number of summary rows to display (default 8).
+#' @param ... Ignored.
+#' @returns `x`, invisibly.
+#' @export
+print.pm_calib_dominance <- function(x, rows = 8, ...) {
+  rng <- function(v) sprintf("%d values in [%g, %g]",
+                             length(unique(v)), min(v), max(v))
+  lst <- function(v) paste(sort(unique(v)), collapse = ", ")
+
+  cat(sprintf("<pm_calib_dominance>  %d rows (rho-resolved)\n", nrow(x)))
+  cat(sprintf("  rho      : %s\n", rng(x$rho)))
+  cat(sprintf("  sigma_nu : %s\n", rng(x$sigma_nu)))
+  cat(sprintf("  n        : %s\n", rng(x$n)))
+  cat(sprintf("  beta     : %s\n", lst(x$beta)))
+  cat(sprintf("  sigma_eps: %s\n", lst(x$sigma_eps)))
+  cat(sprintf("  CI level : %.0f%%\n", 100 * attr(x, "level")))
+
+  sm <- summary(x)
+  n_combo <- nrow(sm)
+  cat(sprintf("\n  worst-case risk & loss range per combination (%d total):\n",
+              n_combo))
+  print(utils::head(sm, rows))
+  if (n_combo > rows)
+    cat(sprintf("  ... %d more; call summary() for the full digest.\n",
+                n_combo - rows))
+
+  invisible(x)
 }
