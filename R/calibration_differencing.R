@@ -1,3 +1,12 @@
+# =============================================================================
+#
+# Calibration step 1 : Set sigma_epsilon the amount of noise
+# to inject to protect differencing inferences.
+#
+# =============================================================================
+
+
+
 #' Smallest sigma_eps guaranteeing the differencing-risk ceiling
 #'
 #' Closed-form inversion of the worst-case upper bound of the differencing
