@@ -12,7 +12,7 @@
 #' @param sigma_nu,sigma_eps,n Mechanism parameters, filled in during
 #'   calibration. Left as `NA` until decided.
 #'
-#' @returns
+#' @returns pm_params object
 #' @export
 #'
 #' @examples
@@ -43,15 +43,15 @@ pm_params <- function(beta_dominance = 0.2,  tau_dominance = 0.9,
 #' Method to print pm_params object
 #'
 #' @param x pm_params object
-#' @param ...
+#' @param ... Ignored
 #'
-#' @returns
+#' @returns pm_params object x
 #' @export
 #'
 #' @examples
 #' para <- pm_params()
 #' para
-print.pm_params <- function(x) {
+print.pm_params <- function(x, ...) {
   fmt <- function(v) if (is.na(v)) "<not set>" else format(v)
   cat("<pm_params>\n")
   cat("  policy\n")
