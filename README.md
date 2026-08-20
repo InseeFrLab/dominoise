@@ -19,6 +19,8 @@ available in **closed form**, so that choosing its parameters is an
 analytical decision rather than an empirical one: no simulation, no
 recalibration on the data.
 
+The package implements the mechanism as presented in Jamme (2026).
+
 ## Installation
 
 ``` r
