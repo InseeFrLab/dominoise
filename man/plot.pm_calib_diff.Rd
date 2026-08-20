@@ -26,5 +26,4 @@ one curve per \code{beta}.
 }
 \examples{
 plot(pm_calib_diff())
-
 }
