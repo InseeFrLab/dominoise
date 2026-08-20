@@ -20,3 +20,4 @@
 Shows the grid's extent (rho and the parameter axes) and the worst-case
 risk / loss-range digest produced by \code{\link[=summary]{summary()}}.
 }
+\keyword{internal}

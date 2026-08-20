@@ -48,6 +48,7 @@ pm_params <- function(beta_dominance = 0.2,  tau_dominance = 0.9,
 #'
 #' @returns pm_params object x
 #' @exportS3Method
+#' @keywords internal
 #'
 #' @examples
 #' para <- pm_params()

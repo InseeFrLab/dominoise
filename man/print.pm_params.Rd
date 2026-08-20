@@ -21,3 +21,4 @@ Method to print pm_params object
 para <- pm_params()
 para
 }
+\keyword{internal}

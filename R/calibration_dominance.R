@@ -140,6 +140,7 @@ summary.pm_calib_dominance <- function(object, ...) {
 }
 
 #' @exportS3Method
+#' @keywords internal
 print.pm_calib_dominance_summary <- function(x, digits = 3, ...) {
   df  <- as.data.frame(x)
   num <- vapply(df, is.numeric, logical(1))
@@ -158,6 +159,7 @@ print.pm_calib_dominance_summary <- function(x, digits = 3, ...) {
 #' @param ... Ignored.
 #' @returns `x`, invisibly.
 #' @exportS3Method
+#' @keywords internal
 print.pm_calib_dominance <- function(x, rows = 8, ...) {
   rng <- function(v) sprintf("%d values in [%g, %g]",
                              length(unique(v)), min(v), max(v))

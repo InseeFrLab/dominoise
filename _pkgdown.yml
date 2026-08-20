@@ -5,34 +5,64 @@ template:
 
 reference:
 - title: Parameters
-  desc: The object gathering every policy and mechanism choice.
+  desc: >
+    The single object gathering every policy and mechanism choice, filled in
+    as calibration proceeds.
   contents:
   - pm_params
 
 - title: Calibration — step 1, differencing noise
-  desc: Choosing sigma_eps from the differencing risk ceiling.
+  desc: >
+    Choosing sigma_eps from the differencing risk ceiling. This parameter also
+    sets the loss floor borne by every cell.
   contents:
   - pm_calib_diff
+  - pm_sigma_eps
   - pm_commit_diff
 
 - title: Calibration — step 2, dominance noise
-  desc: Choosing sigma_nu and n from the scenario-I risk ceiling.
+  desc: >
+    Choosing sigma_nu and n from the scenario-I risk ceiling, keeping the
+    largest admissible n.
   contents:
   - pm_calib_dominance
   - pm_suggest_n
   - pm_commit_dominance
 
 - title: Calibration figures
+  desc: The risk and risk-utility figures of the paper.
   contents:
   - starts_with("pm_plot_")
 
 - title: Applying the mechanism
+  desc: >
+    Deriving the Gaussian draws from the cell keys, and perturbing an
+    aggregated table.
   contents:
   - pm_draws
   - pm_perturb
 
-- title: Risk and utility metrics
-  desc: A-priori metrics, conditional on dominance, and ex-post ones measured
-    on the perturbed table.
+- title: A-priori risk and utility
+  desc: >
+    Closed-form metrics, conditional on the dominance level, computed from the
+    parameters alone.
   contents:
-  - starts_with("assess_")
+  - assess_loss_expectation
+  - assess_loss_ci
+  - assess_risk_I
+  - assess_risk_II
+  - assess_risk_diff
+
+- title: Ex-post assessment
+  desc: Risk and utility measured on the perturbed table itself.
+  contents:
+  - assess_utility_empirical
+  - assess_risk_empirical
+
+- title: Methods and utilities
+  desc: >
+    S3 methods for printing, summarising and plotting the objects returned by
+    the calibration functions. Not called directly.
+  contents:
+  - matches("^summary\\.")
+  - matches("^plot\\.")
