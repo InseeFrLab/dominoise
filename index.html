@@ -63,9 +63,9 @@
 <h2 id="the-mechanism">The mechanism<a class="anchor" aria-label="anchor" href="#the-mechanism"></a>
 </h2>
 <p>Each positive total <code>Y</code> is multiplied by a Gaussian noise combining two components:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Y</mi><mo>′</mo></msup><mo>=</mo><mi>Y</mi><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><msup><mi>ρ</mi><mrow><mspace width="0.167em"></mspace><mi>n</mi></mrow></msup><mi>ν</mi><mo>+</mo><mi>ε</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>ν</mi><mo>∼</mo><mi>𝒩</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><msubsup><mi>σ</mi><mi>ν</mi><mn>2</mn></msubsup><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="1.0em"></mspace><mi>ε</mi><mo>∼</mo><mi>𝒩</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><msubsup><mi>σ</mi><mi>ε</mi><mn>2</mn></msubsup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Y' = Y\,(1 + \rho^{\,n}\nu + \varepsilon), \qquad
+<p><span class="math display">$$Y' = Y\.(1 + \rho^{n}\nu + \varepsilon), \qquad
 \nu \sim \mathcal{N}(0,\sigma_\nu^2),\quad
-\varepsilon \sim \mathcal{N}(0,\sigma_\varepsilon^2)</annotation></semantics></math></p>
+\varepsilon \sim \mathcal{N}(0,\sigma_\varepsilon^2)$$</span></p>
 <p>where <code>rho = X1 / Y</code> is the share of the largest contributor in the total.</p>
 <p>The <strong>dominance-driven</strong> component <code>rho^n * nu</code> concentrates the perturbation on the cells that a dominant contributor makes sensitive; its weight fades as <code>rho</code> moves away from 1, the faster the larger <code>n</code>. The <strong>general-purpose</strong> component <code>eps</code> perturbs every cell at a uniform relative rate and carries the residual protection against differencing, where the risk is not borne by a dominant contributor. Three parameters govern the whole mechanism: <code>sigma_nu</code>, <code>sigma_eps</code> and <code>n</code>.</p>
 <p>From this distribution, the package derives in closed form the information loss and a risk measure for each of three attack scenarios:</p>
