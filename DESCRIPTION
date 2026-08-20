@@ -20,7 +20,7 @@ Description: Protects magnitude tables, such as tables of enterprise turnover,
     described in Jamme (2026)
     <https://www.researchgate.net/publication/408487480_Parsimonious_perturbation_mechanism_for_magnitude_tables_with_analytical_risk-utility_metrics>.
 License: GPL (>= 3)
-URL: https://github.com/InseeFrLab/dominoise
+URL: https://github.com/InseeFrLab/dominoise, https://inseefrlab.github.io/dominoise/
 BugReports: https://github.com/InseeFrLab/dominoise/issues
 Encoding: UTF-8
 Depends: R (>= 4.1)
