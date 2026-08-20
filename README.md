@@ -31,7 +31,7 @@ remotes::install_github("InseeFrLab/dominoise")
 Each positive total `Y` is multiplied by a Gaussian noise combining two
 components:
 
-$$Y' = Y\,(1 + \rho^{\,n}\nu + \varepsilon), \qquad
+$$Y' = Y\.(1 + \rho^{n}\nu + \varepsilon), \qquad
 \nu \sim \mathcal{N}(0,\sigma_\nu^2),\quad
 \varepsilon \sim \mathcal{N}(0,\sigma_\varepsilon^2)$$
 
