@@ -1,0 +1,48 @@
+citHeader(
+  "To cite dominoise in publications, please cite the paper describing the",
+  "method. Add the software entry as well when the exact version matters for",
+  "reproducibility."
+)
+
+## --- the method ------------------------------------------------------------
+## PSD 2026 proceedings (Springer, Lecture Notes in Computer Science).
+## TODO once the proceedings are out: fill in `volume`, `pages` and `doi`,
+## and drop the `url` in favour of the doi.
+bibentry(
+  bibtype  = "InProceedings",
+  title    = paste("Parsimonious perturbation mechanism for magnitude tables",
+                   "with analytical risk-utility metrics"),
+  author   = person("Julien", "Jamme"),
+  booktitle = "Privacy in Statistical Databases",
+  publisher = "Springer",
+  series   = "Lecture Notes in Computer Science",
+  year     = "2026",
+  url      = paste0("https://www.researchgate.net/publication/408487480_",
+                    "Parsimonious_perturbation_mechanism_for_magnitude_tables_",
+                    "with_analytical_risk-utility_metrics"),
+  textVersion = paste(
+    "Jamme, J. (2026).",
+    "Parsimonious perturbation mechanism for magnitude tables with",
+    "analytical risk-utility metrics.",
+    "In Privacy in Statistical Databases, Lecture Notes in Computer Science.",
+    "Springer."
+  )
+)
+
+## --- the software ----------------------------------------------------------
+bibentry(
+  bibtype = "Manual",
+  title   = paste0("{dominoise}: Parsimonious Noise Perturbation for ",
+                   "Magnitude Tables"),
+  author  = person("Julien", "Jamme"),
+  year    = sub("-.*", "", meta$Date %||% format(Sys.Date(), "%Y")),
+  note    = paste0("R package version ", meta$Version),
+  url     = "https://github.com/InseeFrLab/dominoise",
+  textVersion = paste0(
+    "Jamme, J. (",
+    sub("-.*", "", meta$Date %||% format(Sys.Date(), "%Y")),
+    "). dominoise: Parsimonious Noise Perturbation for Magnitude Tables. ",
+    "R package version ", meta$Version, ". ",
+    "https://github.com/InseeFrLab/dominoise"
+  )
+)

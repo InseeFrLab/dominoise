@@ -35,6 +35,7 @@
 #'   `(sigma_nu, n, beta, sigma_eps)`, with columns `risk_max`, `rho_at_max`,
 #'   `EZ_max`, `CI_max` (the last two in percent).
 #' @export
+#' @importFrom purrr pmap_dbl
 #' @examples
 #' # default exploration
 #' grid <- pm_calib_dominance()

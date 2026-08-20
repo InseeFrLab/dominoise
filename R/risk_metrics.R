@@ -12,12 +12,13 @@
 #'
 #' @returns double vector
 #' @export
-#'
+#' @importFrom stats pnorm
+#' @importFrom rlang .data
 #' @examples
 #' assess_risk_diff(sigma_eps = 0.1, beta = 0.2)
 assess_risk_diff <- function(sigma_eps, beta) {
 
-  2 * pnorm(beta/sg_eps) - 1
+  2 * stats::pnorm(beta/sigma_eps) - 1
 
 }
 
