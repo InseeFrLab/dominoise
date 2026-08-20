@@ -1,0 +1,38 @@
+url: https://inseefrlab.github.io/dominoise/
+
+template:
+  bootstrap: 5
+
+reference:
+- title: Parameters
+  desc: The object gathering every policy and mechanism choice.
+  contents:
+  - pm_params
+
+- title: Calibration — step 1, differencing noise
+  desc: Choosing sigma_eps from the differencing risk ceiling.
+  contents:
+  - pm_calib_diff
+  - pm_commit_diff
+
+- title: Calibration — step 2, dominance noise
+  desc: Choosing sigma_nu and n from the scenario-I risk ceiling.
+  contents:
+  - pm_calib_dominance
+  - pm_suggest_n
+  - pm_commit_dominance
+
+- title: Calibration figures
+  contents:
+  - starts_with("pm_plot_")
+
+- title: Applying the mechanism
+  contents:
+  - pm_draws
+  - pm_perturb
+
+- title: Risk and utility metrics
+  desc: A-priori metrics, conditional on dominance, and ex-post ones measured
+    on the perturbed table.
+  contents:
+  - starts_with("assess_")
