@@ -181,3 +181,100 @@ print.pm_calib_dominance <- function(x, rows = 8, ...) {
 
   invisible(x)
 }
+
+#' Commit the dominance decision (sigma_nu and n) into the parameter object
+#'
+#' Closes calibration step 2: records the chosen `sigma_nu` and `n`, together
+#' with the scenario-I policy (`beta`, `tau`), into the `pm_params` object. This
+#' is the single place where step 2 mutates `params`.
+#'
+#' Requires `sigma_eps` to be already set (step 1), since both the scenario-I
+#' risk and the information loss depend on it. The function reports the
+#' resulting worst-case risk over `rho`, where that worst case occurs, and the
+#' range of the information loss -- from its floor (rho -> 0, driven by
+#' `sigma_eps` alone) to its ceiling (rho = 1, driven by `sigma_nu`). A warning
+#' is raised when the worst-case risk exceeds `tau`: the values are still
+#' recorded, the producer being free to accept the overshoot knowingly.
+#'
+#' @param params A `pm_params` object with `sigma_eps` set.
+#' @param sigma_nu,n The chosen values (single values). Recall the calibration
+#'   rule of step 2: keep the *largest* `n` whose worst-case risk still meets
+#'   the ceiling, so as to spare cells of intermediate dominance
+#'   (see [pm_calib_dominance()] and the trade-off map [pm_plot_tradeoff()]).
+#' @param beta,tau Scenario-I accuracy threshold and risk ceiling. Default to
+#'   the `dominance` policy already stored in `params`.
+#' @param level Confidence level for the reported CI loss (default 0.95).
+#' @param rho Grid used to locate the worst case over rho.
+#'   Default `seq(0.001, 1, 0.001)`.
+#' @returns The updated `pm_params`, invisibly.
+#' @export
+#' @examples
+#' para <- pm_commit_diff(pm_params())
+#' para <- pm_commit_dominance(para, sigma_nu = 0.3, n = 6)
+#' para
+pm_commit_dominance <- function(params, sigma_nu, n,
+                                beta = NULL, tau = NULL,
+                                level = 0.95, rho = NULL) {
+
+  stopifnot(inherits(params, "pm_params"))
+
+  if (is.null(beta)) beta <- params$policy$dominance$beta
+  if (is.null(tau))  tau  <- params$policy$dominance$tau
+  if (is.null(rho))  rho  <- seq(0.001, 1, by = 0.001)
+
+  if (length(sigma_nu) != 1L || length(n) != 1L || length(beta) != 1L)
+    stop("'sigma_nu', 'n' and 'beta' must be single values.", call. = FALSE)
+
+  sigma_eps <- params$mechanism$sigma_eps
+  assertthat::assert_that(
+    !is.na(sigma_eps),
+    msg = paste0("sigma_eps is not set: run the differencing step first ",
+                 "(pm_commit_diff()).")
+  )
+  assertthat::assert_that(
+    sigma_nu > 0, n > 0, beta > 0, beta < 1,
+    msg = "Expected: sigma_nu > 0; n > 0; beta in (0;1)."
+  )
+
+  # --- record the decision ------------------------------------------------
+  params$policy$dominance$beta <- beta
+  params$policy$dominance$tau  <- tau
+  params$mechanism$sigma_nu    <- sigma_nu
+  params$mechanism$n           <- n
+
+  # --- resulting risk-utility trade-off -----------------------------------
+  risks    <- assess_risk_I(rho, sigma_nu, sigma_eps, n, beta)
+  i        <- which.max(risks)[1]
+  risk_max <- risks[i]
+  rho_max  <- rho[i]
+
+  EZ_min <- 100 * assess_loss_expectation(0, sigma_nu, sigma_eps, n)
+  EZ_max <- 100 * assess_loss_expectation(1, sigma_nu, sigma_eps, n)
+  CI_min <- 100 * assess_loss_ci(0, sigma_nu, sigma_eps, n, level)
+  CI_max <- 100 * assess_loss_ci(1, sigma_nu, sigma_eps, n, level)
+
+  message(sprintf(
+    paste0(
+      "Dominance step committed: sigma_nu = %g, n = %g ",
+      "(beta = %g, sigma_eps = %g)\n",
+      "  worst-case scenario-I risk: %.3f, reached at rho = %.3f\n",
+      "  information loss E|Z| : %.2f%% (rho -> 0) to %.2f%% (rho = 1)\n",
+      "  information loss CI%.0f%%: %.2f%% (rho -> 0) to %.2f%% (rho = 1)"),
+    sigma_nu, n, beta, sigma_eps, risk_max, rho_max,
+    EZ_min, EZ_max, 100 * level, CI_min, CI_max))
+
+  if (!is.na(tau)) {
+    if (risk_max <= tau) {
+      message(sprintf("  ceiling tau = %g: met (margin %.3f).",
+                      tau, tau - risk_max))
+    } else {
+      warning(sprintf(
+        paste0("Worst-case scenario-I risk (%.3f) exceeds the ceiling tau = %g. ",
+               "Values recorded anyway: raise sigma_nu or lower n to comply."),
+        risk_max, tau), call. = FALSE)
+    }
+  }
+
+  invisible(params)
+}
+
