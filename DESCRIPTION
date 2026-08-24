@@ -1,6 +1,6 @@
 Package: dominoise
 Title: Parsimonious Noise Perturbation for Magnitude Tables
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Julien", "Jamme", email = "julien.jamme@insee.fr",
            role = c("aut", "cre")),
