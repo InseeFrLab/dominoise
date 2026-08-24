@@ -38,6 +38,8 @@ largest admissible n.
 
 The risk and risk-utility figures of the paper.
 
+- [`pm_plot_impact()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_impact.md)
+  : Observed perturbation against dominance
 - [`pm_plot_risk_max()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_risk_max.md)
   : Worst-case risk as a function of sigma_nu
 - [`pm_plot_risk_profile()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_risk_profile.md)
@@ -80,6 +82,8 @@ Risk and utility measured on the perturbed table itself.
   : Observed information loss
 - [`assess_risk_empirical()`](https://inseefrlab.github.io/dominoise/reference/assess_risk_empirical.md)
   : Observed disclosure risk
+- [`pm_plot_impact()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_impact.md)
+  : Observed perturbation against dominance
 
 ## Methods and utilities
 
