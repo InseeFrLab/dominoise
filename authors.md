@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/InseeFrLab/dominoise/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/InseeFrLab/dominoise/blob/v0.1.0/inst/CITATION)
 
 Jamme, J. (2026). Parsimonious perturbation mechanism for magnitude
 tables with analytical risk-utility metrics. In Privacy in Statistical
