@@ -58,6 +58,7 @@ reference:
   contents:
   - assess_utility_empirical
   - assess_risk_empirical
+  - pm_plot_impact
 
 - title: Methods and utilities
   desc: >
