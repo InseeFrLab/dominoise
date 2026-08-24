@@ -32,6 +32,8 @@ and arguments may change without deprecation until version 1.0.0.
 * `pm_plot_risk_profile()`, `pm_plot_risk_max()` and `pm_plot_tradeoff()`
   reproduce the calibration figures of the paper. The first two accept any
   scenario; the third is specific to the risk metric selected.
+* `pm_plot_impact()` superposes the empirical and theoretical losses depending 
+on `rho`.
 
 ## Applying the mechanism
 
