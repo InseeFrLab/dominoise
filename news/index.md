@@ -46,6 +46,8 @@ version 1.0.0.
   [`pm_plot_tradeoff()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_tradeoff.md)
   reproduce the calibration figures of the paper. The first two accept
   any scenario; the third is specific to the risk metric selected.
+- `pm_plot_impact()` superposes the empirical and theoretical losses
+  depending on `rho`.
 
 ### Applying the mechanism
 
