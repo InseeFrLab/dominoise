@@ -1,0 +1,47 @@
+include:
+  - project: "idda/applications/nexus/pipeline-admission/ci-templates"
+    ref: main
+    file: "livraison-package.yaml"
+
+variables:
+  GIT_SSL_NO_VERIFY: "1"
+  PKG_NAME: "ckm"
+
+image: gitlab-registry.insee.fr:443/datascience/registry-prod/onyxia-rstudio:r4.4.2
+
+stages:
+  - 📦️ Package
+
+Build:
+  stage: 📦️ Package
+  image: inseefrlab/onyxia-rstudio:latest
+  retry:
+    max: 2
+    when: runner_system_failure
+  rules:
+    - when: manual
+  script:
+    - Rscript -e 'devtools::install()'
+    - |
+      set -e
+      R --version
+      R CMD build --no-build-vignettes --no-manual .
+  artifacts:
+    paths:
+      - "*.tar.gz"
+
+Nexus:
+  stage: 📦️ Package
+  variables:
+    DEST_REPOSITORY: "r-local"
+    PATH_ARTEFACT_A_DEPLOYER: "${PKG_NAME}_*.tar.gz"
+    NOM_DU_JOB_CONTENANT_LE_LIVRABLE: "Build"
+  extends: .template:livraison-package
+  retry:
+    max: 2
+    when: runner_system_failure
+  rules:
+    - when: manual
+  needs:
+    - job: Build
+      artifacts: true
