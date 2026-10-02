@@ -4,13 +4,13 @@
 #
 # =============================================================================
 
-#' Compute the upper bound of the differencing risk, following the proposition 7
-#' of the paper.
+#' Compute the upper bound of the differencing risk.
 #'
 #' @param sigma_eps double
 #' @param beta double
 #'
 #' @returns double vector
+#' @seealso [dominoise-package] paper's proposition 7
 #' @export
 #' @importFrom stats pnorm
 #' @importFrom rlang .data
@@ -26,7 +26,7 @@ assess_risk_diff <- function(sigma_eps, beta) {
 #' Scenario-I (dominance) risk measure
 #'
 #' Probability that an external attacker infers the dominant contribution X1 to
-#' within +/- beta (Proposition 5 of the paper):
+#' within +/- beta :
 #' `mu_I(rho) = F_Z((1+beta)rho - 1) - F_Z((1-beta)rho - 1)`, with Z the
 #' relative loss at dominance rho.
 #'
@@ -34,6 +34,7 @@ assess_risk_diff <- function(sigma_eps, beta) {
 #' @param sigma_nu,sigma_eps,n Mechanism parameters. Recycled.
 #' @param beta Accuracy threshold of the inference.
 #' @returns mu_I(rho), vectorised.
+#' @seealso [dominoise-package] paper's proposition 5
 #' @export
 #' @examples
 #' assess_risk_I(rho = 0.85, sigma_nu = 0.3, sigma_eps = 0.03, n = 6, beta = 0.2)
@@ -49,7 +50,7 @@ assess_risk_I <- function(rho, sigma_nu, sigma_eps, n, beta) {
 #'
 #' Probability that an insider contributing `X2` to the aggregate infers the
 #' dominant contribution `X1` to within +/- beta, by subtracting their own
-#' contribution from the disseminated total (Proposition 5 of the paper):
+#' contribution from the disseminated total :
 #' `mu_II(rho, rho2) = F_Z((1+beta)rho + rho2 - 1) - F_Z((1-beta)rho + rho2 - 1)`,
 #' with `Z` the relative loss at dominance `rho`.
 #'
@@ -62,6 +63,7 @@ assess_risk_I <- function(rho, sigma_nu, sigma_eps, n, beta) {
 #' @param sigma_nu,sigma_eps,n Mechanism parameters. Recycled.
 #' @param beta Accuracy threshold of the inference.
 #' @returns mu_II(rho, rho2), vectorised.
+#' @seealso [dominoise-package] paper's proposition 5
 #' @export
 #' @examples
 #' # worst case IIa at rho = 0.5

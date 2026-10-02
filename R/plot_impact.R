@@ -3,7 +3,7 @@
 #' Plots the relative deviation actually undergone by each cell against its
 #' dominance level, and overlays the theoretical envelope predicted before any
 #' data were touched: the level-`level` confidence band of the relative loss
-#' (Definition 4) and the mean absolute loss (Proposition 3).
+#' (Definition 4) and the mean absolute loss.
 #'
 #' The mechanism being analytical, the cloud of points should fill the band and
 #' straddle the mean lines. That agreement is the natural consistency check
@@ -16,6 +16,7 @@
 #' @param alpha Point transparency; lower it on large tables.
 #' @param n_grid Number of dominance values used to draw the envelope.
 #' @returns A `ggplot` object.
+#' @seealso [dominoise-package] paper's proposition 3
 #' @export
 #' @examples
 #' set.seed(123)

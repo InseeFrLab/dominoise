@@ -14,7 +14,7 @@
 #' Observed information loss
 #'
 #' Measures the perturbation actually undergone by the table, and compares it
-#' with the theoretical expectation of Proposition 3 evaluated at each cell's
+#' with the theoretical expectation evaluated at each cell's
 #' own dominance. A close match is the natural consistency check: the mechanism
 #' is analytical, so the realised loss should track the predicted one.
 #'
@@ -26,6 +26,7 @@
 #' @returns A `data.frame`: number of cells, mean and median absolute relative
 #'   deviation, quantiles, maximum, relative RMSE, exceedance rates, and the
 #'   theoretical mean absolute loss averaged over the observed dominance.
+#' @seealso [dominoise-package] paper's proposition 3
 #' @export
 assess_utility_empirical <- function(x, by = NULL, thresholds = c(5, 10, 20)) {
 
@@ -82,7 +83,8 @@ assess_utility_empirical <- function(x, by = NULL, thresholds = c(5, 10, 20)) {
 #' Scenario II requires the `x2` column to have been declared in [pm_perturb()],
 #' which adds the `rho2` share the theoretical measure needs.
 #' The differencing scenario is not assessed here: it bears on pairs of cells,
-#' not on single cells, and is controlled a priori by the bound of Proposition 7.
+#' not on single cells, and is controlled a priori by the upper bound of the
+#' metric.
 #'
 #' @param x A table returned by [pm_perturb()].
 #' @param scenario `"I"` (default) or `"II"`.
@@ -91,6 +93,7 @@ assess_utility_empirical <- function(x, by = NULL, thresholds = c(5, 10, 20)) {
 #' @param by Optional column name(s) to break the summary down by.
 #' @returns A `data.frame` with the number of cells, the observed success rate
 #'   (in percent), the mean theoretical risk, and the maximum theoretical risk.
+#' @seealso [dominoise-package] paper's proposition 7
 #' @export
 assess_risk_empirical <- function(x, scenario = c("I", "II"), beta = NULL,
                                   by = NULL) {

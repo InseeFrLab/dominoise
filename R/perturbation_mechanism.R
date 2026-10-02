@@ -38,7 +38,7 @@
 #' uniform draw in ]0;1[, then turned into a Gaussian draw by quantile
 #' inversion: `nu` from N(0, sigma_nu^2) and `eps` from N(0, sigma_eps^2).
 #'
-#' Determinism, avalanche effect and uniformity of SHA-512 (Proposition 8)
+#' Determinism, avalanche effect and uniformity of SHA-512
 #' ensure that the same cell always receives the same perturbation, while draws
 #' remain uncorrelated across indicators and between `nu` and `eps`.
 #'
@@ -52,6 +52,7 @@
 #' @param key_digits Number of decimals used to turn the key into a string.
 #'   Fixed for reproducibility; changing it changes every draw.
 #' @returns A `data.frame` with columns `ck_nu`, `ck_eps`, `nu`, `eps`.
+#' @seealso [dominoise-package] paper's proposition 8
 #' @export
 #' @examples
 #' para <- pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
@@ -73,9 +74,6 @@ pm_draws <- function(ck, params, indicator, operation = "sum",
     all(!is.na(ck)), all(ck >= 0 & ck <= 1),
     msg = "Cell keys must be non-missing and lie in [0;1]."
   )
-
-  if (!requireNamespace("digest", quietly = TRUE))
-    stop("Package 'digest' is required for SHA-512 hashing.", call. = FALSE)
 
   sha512 <- digest::getVDigest(algo = "sha512")   # vectorised: scales to large tables
   key_chr <- .key_to_chr(ck, key_digits)
