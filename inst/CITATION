@@ -9,40 +9,47 @@ citHeader(
 ## TODO once the proceedings are out: fill in `volume`, `pages` and `doi`,
 ## and drop the `url` in favour of the doi.
 bibentry(
-  bibtype  = "InProceedings",
-  title    = paste("Parsimonious perturbation mechanism for magnitude tables",
-                   "with analytical risk-utility metrics"),
-  author   = person("Julien", "Jamme"),
-  booktitle = "Privacy in Statistical Databases",
-  publisher = "Springer",
-  series   = "Lecture Notes in Computer Science",
-  year     = "2026",
-  url      = paste0("https://www.researchgate.net/publication/408487480_",
-                    "Parsimonious_perturbation_mechanism_for_magnitude_tables_",
-                    "with_analytical_risk-utility_metrics"),
+  bibtype   = "InProceedings",
+  title     = paste("Parsimonious Perturbation Mechanism for Magnitude Tables",
+    "with Analytical Risk-Utility Metrics"),
+  author    = person("Julien", "Jamme"),
+  editor    = c(person("Josep", "Domingo-Ferrer"),
+    person("Ismael", "González-Yero")),
+  booktitle = "Privacy in Statistical Databases. PSD 2026",
+  series    = "Lecture Notes in Computer Science",
+  volume    = "16925",
+  pages     = "130--146",
+  address   = "Cham",
+  year      = "2027",
+  doi       = "10.1007/978-3-032-37883-5_9",
   textVersion = paste(
-    "Jamme, J. (2026).",
-    "Parsimonious perturbation mechanism for magnitude tables with",
-    "analytical risk-utility metrics.",
-    "In Privacy in Statistical Databases, Lecture Notes in Computer Science.",
-    "Springer."
-  )
-)
+    "Jamme, J. (2027).",
+    "Parsimonious Perturbation Mechanism for Magnitude Tables with",
+    "Analytical Risk-Utility Metrics.",
+    "In: Domingo-Ferrer, J., González-Yero, I. (eds)",
+    "Privacy in Statistical Databases. PSD 2026.",
+    "Lecture Notes in Computer Science, vol 16925, pp. 130-146.",
+    "Springer, Cham. https://doi.org/10.1007/978-3-032-37883-5_9"
+   )
+ )
 
 ## --- the software ----------------------------------------------------------
+## `meta$Date` is absent from DESCRIPTION: fall back on the CRAN publication
+## date, then on the current year (base R only: `%||%` needs R >= 4.4).
+year <- if (!is.null(meta$Date)) meta$Date else meta$`Date/Publication`
+year <- if (is.null(year)) format(Sys.Date(), "%Y") else sub("-.*", "", year)
+
 bibentry(
-  bibtype = "Manual",
-  title   = paste0("{dominoise}: Parsimonious Noise Perturbation for ",
-                   "Magnitude Tables"),
-  author  = person("Julien", "Jamme"),
-  year    = sub("-.*", "", meta$Date %||% format(Sys.Date(), "%Y")),
-  note    = paste0("R package version ", meta$Version),
-  url     = "https://github.com/InseeFrLab/dominoise",
-  textVersion = paste0(
-    "Jamme, J. (",
-    sub("-.*", "", meta$Date %||% format(Sys.Date(), "%Y")),
-    "). dominoise: Parsimonious Noise Perturbation for Magnitude Tables. ",
-    "R package version ", meta$Version, ". ",
-    "https://github.com/InseeFrLab/dominoise"
-  )
-)
+   bibtype = "Manual",
+   title   = paste0("{dominoise}: Parsimonious Noise Perturbation for ",
+                    "Magnitude Tables"),
+   author  = person("Julien", "Jamme"),
+   year    = year,
+   note    = paste0("R package version ", meta$Version),
+   url     = "https://github.com/InseeFrLab/dominoise",
+   textVersion = paste0(
+      "Jamme, J. (", year, "). dominoise: Parsimonious Noise Perturbation for ",
+      "Magnitude Tables. R package version ", meta$Version, ". ",
+      "https://github.com/InseeFrLab/dominoise"
+   )
+ )

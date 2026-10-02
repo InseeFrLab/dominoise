@@ -1,4 +1,27 @@
-# dominoise (development version)
+# dominoise 0.2.0
+
+First CRAN release. The method is unchanged from 0.1.0 and follows the
+published paper (Jamme, 2027, <doi:10.1007/978-3-032-37883-5_9>). This release
+focuses on robustness and documentation. The API may still evolve until 1.0.0.
+
+## Changes
+
+* `pm_plot_risk_max()` gains `x_axis = "n"` and overlays the frontier found by
+  `pm_suggest_n()` (`mark_frontier`).
+
+## Bug fixes
+
+* `pm_calib_dominance()` now passes `level` to the CI loss metric (it was
+  always computed at 95%).
+* Filtering calibration tables on `sigma_nu`, `n`, `beta` or `rho` is no longer
+  affected by floating-point representation of `seq()` grids.
+
+## Internal
+
+* purrr is no longer a dependency. Unit tests added.
+
+
+# dominoise 0.1.0 (development version)
 
 First working version of the package. The API is still unstable: function names
 and arguments may change without deprecation until version 1.0.0.
