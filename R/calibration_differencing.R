@@ -10,10 +10,11 @@
 #' Smallest sigma_eps guaranteeing the differencing-risk ceiling
 #'
 #' Closed-form inversion of the worst-case upper bound of the differencing
-#' risk (Proposition 7 of the paper)
+#' risk.
 #'
 #' @param beta,tau Numeric. Accuracy threshold and risk ceiling.
 #' @return sigma_eps, vectorised over `beta`/`tau`.
+#' @seealso [dominoise-package] paper's proposition 7
 #' @export
 pm_sigma_eps <- function(beta, tau) {
   stopifnot(all(beta > 0), all(tau > 0 & tau < 1))
@@ -53,10 +54,10 @@ pm_calib_diff <- function(params = NULL, beta = NULL, tau = NULL, level = 0.95) 
     msg = "All beta and tau values have to be reals in (0;1)."
   )
 
-  if(is.null(params) & is.null(beta)){
+  if(is.null(params) && is.null(beta)){
 
     betas <- c(0.05, 0.1, 0.15, 0.2, 0.25)
-    taus <- seq(0.5, 0.95, 0.05)
+    taus <- (10:19)/20
 
   }else if(is.null(beta)) {
 
