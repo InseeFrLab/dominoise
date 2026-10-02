@@ -55,8 +55,8 @@ pm_suggest_n <- function(params = NULL, sigma_nu = NULL,
   if (is.null(sigma_eps) && !is.null(params)) sigma_eps <- params$mechanism$sigma_eps
   if (is.null(beta)     && !is.null(params)) beta      <- params$policy$dominance$beta
   if (is.null(tau)      && !is.null(params)) tau       <- params$policy$dominance$tau
-  if (is.null(sigma_nu)) sigma_nu <- seq(0.05, 0.5, by = 0.05)
-  if (is.null(rho))      rho      <- seq(0.001, 1, by = 0.001)
+  if (is.null(sigma_nu)) sigma_nu <- (1:10)/20
+  if (is.null(rho))      rho      <- (1:1000)/1000
 
   assertthat::assert_that(
     !is.null(sigma_eps), !is.na(sigma_eps), !is.null(beta), !is.null(tau),
@@ -112,119 +112,4 @@ pm_suggest_n <- function(params = NULL, sigma_nu = NULL,
             "this noise level. Increase sigma_nu.", call. = FALSE)
 
   out
-}
-
-
-#' Worst-case risk against a mechanism parameter
-#'
-#' Reduces a calibration table to the worst case over `rho` and plots it against
-#' one of the two mechanism parameters.
-#'
-#' With `x_axis = "sigma_nu"` this is the middle panel of Figure 3: the risk
-#' decreases with `sigma_nu`, one curve per `n`.
-#'
-#' With `x_axis = "n"` it is the view that accompanies [pm_suggest_n()]: the risk
-#' increases monotonically with `n`, one curve per `sigma_nu`. Each crossing of
-#' the ceiling `tau` is the `n_max` of its `sigma_nu` -- the very root that
-#' [pm_suggest_n()] solves for. Set `mark_frontier = TRUE` to overlay those
-#' points, computed by the same function so the plot and the table always agree.
-#'
-#' @param x A calibration table (e.g. from [pm_calib_dominance()]).
-#' @param x_axis Parameter on the x-axis: `"sigma_nu"` (default) or `"n"`.
-#' @param sigma_nu,n,beta,sigma_eps,scenario Optional values to keep.
-#' @param tau Risk ceiling, drawn as a dashed line. Defaults to `thresholds`.
-#' @param mark_frontier If `TRUE` and `x_axis = "n"`, mark the largest
-#'   admissible `n` of each `sigma_nu` with a point. Requires a single `tau`.
-#' @param marks Values of the x-axis parameter highlighted with a point;
-#'   `NULL` for none.
-#' @param thresholds Risk levels drawn as dashed horizontal lines.
-#' @returns A `ggplot` object.
-#' @export
-#' @examples
-#' grid <- pm_calib_dominance(sigma_eps = 0.031, beta = 0.2,
-#'                            sigma_nu = c(0.3, 0.4, 0.5), n = seq(1, 12, 0.2))
-#' pm_plot_risk_max(grid, x_axis = "n", tau = 0.5)
-pm_plot_risk_max <- function(x, x_axis = c("sigma_nu", "n"),
-                             sigma_nu = NULL, n = NULL, beta = NULL,
-                             sigma_eps = NULL, scenario = NULL,
-                             tau = NULL, mark_frontier = TRUE,
-                             marks = NULL, thresholds = c(0.5, 0.8)) {
-
-  x_axis <- match.arg(x_axis)
-  if (!requireNamespace("ggplot2", quietly = TRUE))
-    stop("Package 'ggplot2' is required.", call. = FALSE)
-
-  d <- .pm_plot_data(x, sigma_nu, n, beta, sigma_eps, scenario)
-  d <- .pm_require_single(d, "beta", "pm_plot_risk_max")
-  d <- .pm_require_single(d, "sigma_eps", "pm_plot_risk_max")
-
-  # worst case over rho, per parameter combination
-  grp <- c("sigma_nu", "sigma_eps", "n", "beta",
-           if ("scenario" %in% names(d)) "scenario")
-  sm <- d |>
-    dplyr::group_by(dplyr::across(dplyr::all_of(grp))) |>
-    dplyr::summarise(risk_max = max(.data$risk), .groups = "drop")
-
-  # swap the roles of the two parameters
-  if (x_axis == "n") {
-    sm$xvar  <- sm$n
-    sm$grp_f <- factor(sm$sigma_nu, levels = sort(unique(sm$sigma_nu)))
-    xlab <- "n"; collab <- expression(sigma[nu])
-  } else {
-    sm$xvar  <- sm$sigma_nu
-    sm$grp_f <- factor(sm$n, levels = sort(unique(sm$n)))
-    xlab <- expression(sigma[nu]); collab <- "n"
-  }
-
-  lines <- if (is.null(tau)) thresholds else unique(c(thresholds, tau))
-
-  p <- ggplot2::ggplot(sm, ggplot2::aes(x = .data$xvar, y = .data$risk_max,
-                                        colour = .data$grp_f))
-  p <- .pm_thresholds(p, lines)
-  p <- p + ggplot2::geom_line(linewidth = 0.9)
-
-  if (!is.null(marks) && length(marks)) {
-    mk <- sm[sm$xvar %in% marks, , drop = FALSE]
-    if (nrow(mk)) p <- p + ggplot2::geom_point(data = mk, size = 1.6)
-  }
-
-  # overlay the frontier: largest admissible n per sigma_nu
-  if (isTRUE(mark_frontier)) {
-    if (x_axis != "n")
-      warning("mark_frontier applies to x_axis = 'n' only; ignored.",
-              call. = FALSE)
-    else if (is.null(tau) || length(tau) != 1L)
-      warning("mark_frontier needs a single 'tau'; ignored.", call. = FALSE)
-    else {
-      fr <- pm_suggest_n(sigma_nu  = sort(unique(sm$sigma_nu)),
-                         beta      = sm$beta[1],
-                         tau       = tau,
-                         sigma_eps = sm$sigma_eps[1],
-                         n_range   = range(sm$n))
-      fr <- fr[!is.na(fr$n_max), , drop = FALSE]
-      if (nrow(fr)) {
-        fr$grp_f <- factor(fr$sigma_nu, levels = levels(sm$grp_f))
-        p <- p + ggplot2::geom_point(
-          data = fr,
-          ggplot2::aes(x = .data$n_max, y = .data$risk_at_n_max,
-                       colour = .data$grp_f),
-          shape = 21, fill = "white", size = 2.6, stroke = 1)
-      }
-    }
-  }
-
-  if ("scenario" %in% names(sm))
-    p <- p + ggplot2::facet_wrap(~ scenario)
-
-  p +
-    ggplot2::scale_colour_viridis_d(name = collab, end = 0.85) +
-    ggplot2::scale_y_continuous(limits = c(0, 1.01), expand = c(0, 0),
-                                breaks = c(seq(0, 1, 0.25), 0.8)) +
-    ggplot2::labs(x = xlab,
-                  y = expression(paste("Risk (worst case in ", rho, ")")),
-                  subtitle = sprintf("beta = %g, sigma_eps = %g",
-                                     sm$beta[1], sm$sigma_eps[1])) +
-    ggplot2::theme_minimal() +
-    ggplot2::theme(legend.position = "bottom",
-                   legend.title.position = "top")
 }
