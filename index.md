@@ -7,9 +7,9 @@ available in **closed form**, so that choosing its parameters is an
 analytical decision rather than an empirical one: no simulation, no
 recalibration on the data.
 
-The package implements the mechanism as presented in Jamme (2026).
-
 ## Installation
+
+Development version:
 
 ``` r
 
@@ -22,9 +22,11 @@ remotes::install_github("InseeFrLab/dominoise")
 Each positive total `Y` is multiplied by a Gaussian noise combining two
 components:
 
-\$\$Y' = Y\\(1 + \rho^{n}\nu + \varepsilon), \qquad \nu \sim
-\mathcal{N}(0,\sigma\_\nu^2),\quad \varepsilon \sim
-\mathcal{N}(0,\sigma\_\varepsilon^2)\$\$
+``` math
+Y' = Y\,(1 + \rho^{\,n}\nu + \varepsilon), \qquad
+\nu \sim \mathcal{N}(0,\sigma_\nu^2),\quad
+\varepsilon \sim \mathcal{N}(0,\sigma_\varepsilon^2)
+```
 
 where `rho = X1 / Y` is the share of the largest contributor in the
 total.
@@ -275,12 +277,12 @@ operation**. Two consequences to plan for before production:
 
 ## Reference
 
-Jamme, J. (2026). *Parsimonious perturbation mechanism for magnitude
-tables with analytical risk-utility metrics.*
-[ResearchGate](https://www.researchgate.net/publication/408487480_Parsimonious_perturbation_mechanism_for_magnitude_tables_with_analytical_risk-utility_metrics)
-
-All the results of the paper are reproducible from a companion
-repository:
+Jamme, J. (2027). Parsimonious Perturbation Mechanism for Magnitude
+Tables with Analytical Risk-Utility Metrics. In: Domingo-Ferrer, J.,
+González-Yero, I. (eds) *Privacy in Statistical Databases. PSD 2026*.
+Lecture Notes in Computer Science, vol 16925, pp. 130–146. Springer,
+Cham. <https://doi.org/10.1007/978-3-032-37883-5_9> All the results of
+the paper are reproducible from a companion repository:
 [InseeFrLab/perturbation-mechanism-for-aggregates](https://github.com/InseeFrLab/perturbation-mechanism-for-aggregates).
 
 ``` r

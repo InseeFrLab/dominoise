@@ -3,7 +3,7 @@
 Plots the relative deviation actually undergone by each cell against its
 dominance level, and overlays the theoretical envelope predicted before
 any data were touched: the level-`level` confidence band of the relative
-loss (Definition 4) and the mean absolute loss (Proposition 3).
+loss (Definition 4) and the mean absolute loss.
 
 ## Usage
 
@@ -45,6 +45,11 @@ The mechanism being analytical, the cloud of points should fill the band
 and straddle the mean lines. That agreement is the natural consistency
 check between what was promised at calibration time and what the table
 received.
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's proposition 3
 
 ## Examples
 

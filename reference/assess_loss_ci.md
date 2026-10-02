@@ -1,10 +1,9 @@
 # Confidence-interval bound of the relative loss Z
 
 Upper bound `L(rho) = q * sqrt(rho^(2n) sigma_nu^2 + sigma_eps^2)` of
-the level-`level` confidence interval `[-L(rho), L(rho)]` of Z
-(Definition 4 of the paper), with `q` the `(1+level)/2` quantile of the
-standard normal. The interval is symmetric, so this single value gives
-both bounds.
+the level-`level` confidence interval `[-L(rho), L(rho)]` of Z, with `q`
+the `(1+level)/2` quantile of the standard normal. The interval is
+symmetric, so this single value gives both bounds.
 
 ## Usage
 
@@ -29,6 +28,11 @@ assess_loss_ci(rho, sigma_nu, sigma_eps, n, level = 0.95)
 ## Value
 
 The upper bound L(rho) as a relative quantity.
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's Definition 4
 
 ## Examples
 

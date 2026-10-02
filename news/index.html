@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dominoise</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,15 +33,34 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="dominoise-development-version">dominoise (development version)<a class="anchor" aria-label="anchor" href="#dominoise-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.0" id="dominoise-020">dominoise 0.2.0<a class="anchor" aria-label="anchor" href="#dominoise-020"></a></h2>
+<p>First CRAN release. The method is unchanged from 0.1.0 and follows the published paper (Jamme, 2027, <a href="doi:10.1007/978-3-032-37883-5_9" class="uri">doi:10.1007/978-3-032-37883-5_9</a>). This release focuses on robustness and documentation. The API may still evolve until 1.0.0.</p>
+<div class="section level3">
+<h3 id="changes-0-2-0">Changes<a class="anchor" aria-label="anchor" href="#changes-0-2-0"></a></h3>
+<ul><li>
+<code><a href="../reference/pm_plot_risk_max.html">pm_plot_risk_max()</a></code> gains <code>x_axis = "n"</code> and overlays the frontier found by <code><a href="../reference/pm_suggest_n.html">pm_suggest_n()</a></code> (<code>mark_frontier</code>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-2-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-0"></a></h3>
+<ul><li>
+<code><a href="../reference/pm_calib_dominance.html">pm_calib_dominance()</a></code> now passes <code>level</code> to the CI loss metric (it was always computed at 95%).</li>
+<li>Filtering calibration tables on <code>sigma_nu</code>, <code>n</code>, <code>beta</code> or <code>rho</code> is no longer affected by floating-point representation of <code><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq()</a></code> grids.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="internal-0-2-0">Internal<a class="anchor" aria-label="anchor" href="#internal-0-2-0"></a></h3>
+<ul><li>purrr is no longer a dependency. Unit tests added.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.0" id="dominoise-010-development-version">dominoise 0.1.0 (development version)<a class="anchor" aria-label="anchor" href="#dominoise-010-development-version"></a></h2>
 <p>First working version of the package. The API is still unstable: function names and arguments may change without deprecation until version 1.0.0.</p>
 <div class="section level3">
-<h3 id="parameters-development-version">Parameters<a class="anchor" aria-label="anchor" href="#parameters-development-version"></a></h3>
+<h3 id="parameters-0-1-0">Parameters<a class="anchor" aria-label="anchor" href="#parameters-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/pm_params.html">pm_params()</a></code> gathers every choice in a single object: the policy, organised by disclosure scenario (<code>dominance</code>, <code>prule</code>, <code>diff</code>), and the three mechanism parameters (<code>sigma_nu</code>, <code>sigma_eps</code>, <code>n</code>), filled in as calibration proceeds.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="calibration--step-the-differencing-noise-development-version">Calibration — step 1, the differencing noise<a class="anchor" aria-label="anchor" href="#calibration--step-the-differencing-noise-development-version"></a></h3>
+<h3 id="calibration--step-the-differencing-noise-0-1-0">Calibration — step 1, the differencing noise<a class="anchor" aria-label="anchor" href="#calibration--step-the-differencing-noise-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/pm_calib_diff.html">pm_calib_diff()</a></code> returns the theoretical grid of <code>sigma_eps</code> values meeting a given <code>(beta, tau)</code> couple, with the loss floor they imply.</li>
 <li>
@@ -50,7 +69,7 @@
 <code><a href="../reference/pm_commit_diff.html">pm_commit_diff()</a></code> records the decision and sets <code>sigma_eps</code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="calibration--step-the-dominance-noise-development-version">Calibration — step 2, the dominance noise<a class="anchor" aria-label="anchor" href="#calibration--step-the-dominance-noise-development-version"></a></h3>
+<h3 id="calibration--step-the-dominance-noise-0-1-0">Calibration — step 2, the dominance noise<a class="anchor" aria-label="anchor" href="#calibration--step-the-dominance-noise-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/pm_calib_dominance.html">pm_calib_dominance()</a></code> returns, over a grid of dominance levels <code>rho</code>, the scenario-I risk and the information loss for each candidate <code>(sigma_nu, n)</code>.</li>
 <li>
@@ -61,21 +80,21 @@
 <code><a href="../reference/pm_commit_dominance.html">pm_commit_dominance()</a></code> records <code>sigma_nu</code> and <code>n</code>, and reports the resulting trade-off.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="figures-development-version">Figures<a class="anchor" aria-label="anchor" href="#figures-development-version"></a></h3>
+<h3 id="figures-0-1-0">Figures<a class="anchor" aria-label="anchor" href="#figures-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/pm_plot_risk_profile.html">pm_plot_risk_profile()</a></code>, <code><a href="../reference/pm_plot_risk_max.html">pm_plot_risk_max()</a></code> and <code><a href="../reference/pm_plot_tradeoff.html">pm_plot_tradeoff()</a></code> reproduce the calibration figures of the paper. The first two accept any scenario; the third is specific to the risk metric selected.</li>
 <li>
 <code><a href="../reference/pm_plot_impact.html">pm_plot_impact()</a></code> superposes the empirical and theoretical losses depending on <code>rho</code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="applying-the-mechanism-development-version">Applying the mechanism<a class="anchor" aria-label="anchor" href="#applying-the-mechanism-development-version"></a></h3>
+<h3 id="applying-the-mechanism-0-1-0">Applying the mechanism<a class="anchor" aria-label="anchor" href="#applying-the-mechanism-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/pm_perturb.html">pm_perturb()</a></code> applies <code>Y' = Y (1 + rho^n nu + eps)</code> to an aggregated table and returns it with <code>rho</code>, the derived keys and the perturbed total, plus a <code>pm_meta</code> attribute recording the full configuration.</li>
 <li>
 <code><a href="../reference/pm_draws.html">pm_draws()</a></code> derives the two Gaussian draws from a cell key by SHA-512 hashing and quantile inversion, so that perturbations are reproducible over time.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="metrics-development-version">Metrics<a class="anchor" aria-label="anchor" href="#metrics-development-version"></a></h3>
+<h3 id="metrics-0-1-0">Metrics<a class="anchor" aria-label="anchor" href="#metrics-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/assess_loss_expectation.html">assess_loss_expectation()</a></code> and <code><a href="../reference/assess_loss_ci.html">assess_loss_ci()</a></code> give the a-priori information loss conditional on dominance.</li>
 <li>

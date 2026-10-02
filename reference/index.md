@@ -41,7 +41,7 @@ The risk and risk-utility figures of the paper.
 - [`pm_plot_impact()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_impact.md)
   : Observed perturbation against dominance
 - [`pm_plot_risk_max()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_risk_max.md)
-  : Worst-case risk as a function of sigma_nu
+  : Worst-case risk against a mechanism parameter
 - [`pm_plot_risk_profile()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_risk_profile.md)
   : Risk profile as a function of dominance
 - [`pm_plot_tradeoff()`](https://inseefrlab.github.io/dominoise/reference/pm_plot_tradeoff.md)
@@ -71,8 +71,7 @@ the parameters alone.
 - [`assess_risk_II()`](https://inseefrlab.github.io/dominoise/reference/assess_risk_II.md)
   : Scenario-II (p%-rule) risk measure
 - [`assess_risk_diff()`](https://inseefrlab.github.io/dominoise/reference/assess_risk_diff.md)
-  : Compute the upper bound of the differencing risk, following the
-  proposition 7 of the paper.
+  : Compute the upper bound of the differencing risk.
 
 ## Ex-post assessment
 

@@ -1,7 +1,7 @@
 # Scenario-I (dominance) risk measure
 
 Probability that an external attacker infers the dominant contribution
-X1 to within +/- beta (Proposition 5 of the paper):
+X1 to within +/- beta :
 `mu_I(rho) = F_Z((1+beta)rho - 1) - F_Z((1-beta)rho - 1)`, with Z the
 relative loss at dominance rho.
 
@@ -28,6 +28,11 @@ assess_risk_I(rho, sigma_nu, sigma_eps, n, beta)
 ## Value
 
 mu_I(rho), vectorised.
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's proposition 5
 
 ## Examples
 

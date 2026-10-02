@@ -45,9 +45,14 @@ A `data.frame` with columns `ck_nu`, `ck_eps`, `nu`, `eps`.
 
 ## Details
 
-Determinism, avalanche effect and uniformity of SHA-512 (Proposition 8)
-ensure that the same cell always receives the same perturbation, while
-draws remain uncorrelated across indicators and between `nu` and `eps`.
+Determinism, avalanche effect and uniformity of SHA-512 ensure that the
+same cell always receives the same perturbation, while draws remain
+uncorrelated across indicators and between `nu` and `eps`.
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's proposition 8
 
 ## Examples
 

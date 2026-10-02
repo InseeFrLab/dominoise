@@ -2,8 +2,7 @@
 
 Probability that an insider contributing `X2` to the aggregate infers
 the dominant contribution `X1` to within +/- beta, by subtracting their
-own contribution from the disseminated total (Proposition 5 of the
-paper):
+own contribution from the disseminated total :
 `mu_II(rho, rho2) = F_Z((1+beta)rho + rho2 - 1) - F_Z((1-beta)rho + rho2 - 1)`,
 with `Z` the relative loss at dominance `rho`.
 
@@ -40,6 +39,11 @@ mu_II(rho, rho2), vectorised.
 The worst case (IIa) has the two largest contributors sharing the whole
 cell (`rho + rho2 = 1`); the relaxed case (IIb) leaves a residual share
 to the other contributors, typically `rho + rho2 = 0.95`.
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's proposition 5
 
 ## Examples
 

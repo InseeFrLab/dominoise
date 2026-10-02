@@ -1,10 +1,9 @@
 # Observed information loss
 
 Measures the perturbation actually undergone by the table, and compares
-it with the theoretical expectation of Proposition 3 evaluated at each
-cell's own dominance. A close match is the natural consistency check:
-the mechanism is analytical, so the realised loss should track the
-predicted one.
+it with the theoretical expectation evaluated at each cell's own
+dominance. A close match is the natural consistency check: the mechanism
+is analytical, so the realised loss should track the predicted one.
 
 ## Usage
 
@@ -33,3 +32,8 @@ assess_utility_empirical(x, by = NULL, thresholds = c(5, 10, 20))
 A `data.frame`: number of cells, mean and median absolute relative
 deviation, quantiles, maximum, relative RMSE, exceedance rates, and the
 theoretical mean absolute loss averaged over the observed dominance.
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's proposition 3

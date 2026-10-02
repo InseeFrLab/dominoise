@@ -1,7 +1,6 @@
-# Compute the upper bound of the differencing risk, following the proposition 7 of the paper.
+# Compute the upper bound of the differencing risk.
 
-Compute the upper bound of the differencing risk, following the
-proposition 7 of the paper.
+Compute the upper bound of the differencing risk.
 
 ## Usage
 
@@ -22,6 +21,11 @@ assess_risk_diff(sigma_eps, beta)
 ## Value
 
 double vector
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's proposition 7
 
 ## Examples
 

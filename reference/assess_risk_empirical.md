@@ -44,5 +44,10 @@ Scenario II requires the `x2` column to have been declared in
 [`pm_perturb()`](https://inseefrlab.github.io/dominoise/reference/pm_perturb.md),
 which adds the `rho2` share the theoretical measure needs. The
 differencing scenario is not assessed here: it bears on pairs of cells,
-not on single cells, and is controlled a priori by the bound of
-Proposition 7.
+not on single cells, and is controlled a priori by the upper bound of
+the metric.
+
+## See also
+
+[dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
+paper's proposition 7
