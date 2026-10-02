@@ -4,3 +4,9 @@
 ^README\.Rmd$
 ^\.github$
 ^\.gitlab-ci\.yml$
+_pkgdown.yml
+renovate.json
+^cran-comments\.md$
+^docs$
+^pkgdown$
+^CRAN-SUBMISSION$

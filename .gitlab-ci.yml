@@ -5,7 +5,7 @@ include:
 
 variables:
   GIT_SSL_NO_VERIFY: "1"
-  PKG_NAME: "ckm"
+  PKG_NAME: "dominoise"
 
 image: gitlab-registry.insee.fr:443/datascience/registry-prod/onyxia-rstudio:r4.4.2
 
