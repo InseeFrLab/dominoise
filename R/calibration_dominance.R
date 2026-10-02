@@ -35,7 +35,6 @@
 #'   `(sigma_nu, n, beta, sigma_eps)`, with columns `risk_max`, `rho_at_max`,
 #'   `EZ_max`, `CI_max` (the last two in percent).
 #' @export
-#' @importFrom purrr pmap_dbl
 #' @examples
 #' # default exploration
 #' grid <- pm_calib_dominance()
@@ -67,9 +66,9 @@ pm_calib_dominance <- function(
       beta <- c(0.1, 0.2)
     }
   }
-  if (is.null(sigma_nu)) sigma_nu <- seq(0.1, 0.5, by = 0.1)
+  if (is.null(sigma_nu)) sigma_nu <- (1:5)/10
   if (is.null(n))        n        <- seq(3, 12, by = 3)
-  if (is.null(rho))      rho      <- seq(0, 1, by = 0.02)[-1]
+  if (is.null(rho))      rho      <- (1:50)/50
 
   assertthat::assert_that(
     all(sigma_nu > 0), all(n > 0), all(sigma_eps >= 0),
@@ -86,9 +85,18 @@ pm_calib_dominance <- function(
     KEEP.OUT.ATTRS = FALSE
   )
 
-  risks <- purrr::pmap_dbl(combos, assess_risk_I)
-  loss_expect <- purrr::pmap_dbl(combos[, c("rho","sigma_nu","sigma_eps","n")], assess_loss_expectation)
-  loss_ci <- purrr::pmap_dbl(combos[, c("rho","sigma_nu","sigma_eps","n")], assess_loss_ci)
+  risks <- assess_risk_I(
+    rho = combos$rho, sigma_nu = combos$sigma_nu,
+    sigma_eps = combos$sigma_eps, n = combos$n, beta = combos$beta
+  )
+  loss_expect <- assess_loss_expectation(
+    rho = combos$rho, sigma_nu = combos$sigma_nu,
+    sigma_eps = combos$sigma_eps, n = combos$n
+  )
+  loss_ci <- assess_loss_ci(
+    rho = combos$rho, sigma_nu = combos$sigma_nu,
+    sigma_eps = combos$sigma_eps, n = combos$n, level = level
+  )
 
   out <- combos
   out$risk <- risks
@@ -223,7 +231,7 @@ pm_commit_dominance <- function(params, sigma_nu, n,
 
   if (is.null(beta)) beta <- params$policy$dominance$beta
   if (is.null(tau))  tau  <- params$policy$dominance$tau
-  if (is.null(rho))  rho  <- seq(0.001, 1, by = 0.001)
+  if (is.null(rho))  rho  <- (1:1000)/1000
 
   if (length(sigma_nu) != 1L || length(n) != 1L || length(beta) != 1L)
     stop("'sigma_nu', 'n' and 'beta' must be single values.", call. = FALSE)
