@@ -15,12 +15,15 @@ assess_loss_expectation(rho, sigma_nu, sigma_eps, n)
 E(|Z| | rho) as a relative quantity (multiply by 100 for percent).
 }
 \description{
-\verb{E(|Z| | P = rho) = sqrt(2 (rho^(2n) sigma_nu^2 + sigma_eps^2) / pi)}
-(Proposition 3 of the paper): the average relative perturbation undergone by
+\verb{E(|Z| | P = rho) = sqrt(2 (rho^(2n) sigma_nu^2 + sigma_eps^2) / pi)}:
+the average relative perturbation undergone by
 a cell of dominance \code{rho}. Contrary to the differencing step -- where letting
 rho -> 0 makes the sigma_nu term vanish -- the sigma_nu contribution is kept
 in full here.
 }
 \examples{
 assess_loss_expectation(rho = 1, sigma_nu = 0.3, sigma_eps = 0.03, n = 6)
+}
+\seealso{
+\link{dominoise-package} paper's proposition 3
 }

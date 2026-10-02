@@ -32,11 +32,14 @@ uniform draw in ]0;1[, then turned into a Gaussian draw by quantile
 inversion: \code{nu} from N(0, sigma_nu^2) and \code{eps} from N(0, sigma_eps^2).
 }
 \details{
-Determinism, avalanche effect and uniformity of SHA-512 (Proposition 8)
+Determinism, avalanche effect and uniformity of SHA-512
 ensure that the same cell always receives the same perturbation, while draws
 remain uncorrelated across indicators and between \code{nu} and \code{eps}.
 }
 \examples{
 para <- pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
 pm_draws(c(0.12, 0.87), para, indicator = "turnover")
+}
+\seealso{
+\link{dominoise-package} paper's proposition 8
 }

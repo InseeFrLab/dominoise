@@ -2,8 +2,7 @@
 % Please edit documentation in R/risk_metrics.R
 \name{assess_risk_diff}
 \alias{assess_risk_diff}
-\title{Compute the upper bound of the differencing risk, following the proposition 7
-of the paper.}
+\title{Compute the upper bound of the differencing risk.}
 \usage{
 assess_risk_diff(sigma_eps, beta)
 }
@@ -16,9 +15,11 @@ assess_risk_diff(sigma_eps, beta)
 double vector
 }
 \description{
-Compute the upper bound of the differencing risk, following the proposition 7
-of the paper.
+Compute the upper bound of the differencing risk.
 }
 \examples{
 assess_risk_diff(sigma_eps = 0.1, beta = 0.2)
+}
+\seealso{
+\link{dominoise-package} paper's proposition 7
 }

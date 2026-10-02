@@ -32,5 +32,9 @@ one draw from the probability the mechanism guarantees.
 Scenario II requires the \code{x2} column to have been declared in \code{\link[=pm_perturb]{pm_perturb()}},
 which adds the \code{rho2} share the theoretical measure needs.
 The differencing scenario is not assessed here: it bears on pairs of cells,
-not on single cells, and is controlled a priori by the bound of Proposition 7.
+not on single cells, and is controlled a priori by the upper bound of the
+metric.
+}
+\seealso{
+\link{dominoise-package} paper's proposition 7
 }

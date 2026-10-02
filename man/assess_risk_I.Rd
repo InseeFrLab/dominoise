@@ -18,10 +18,13 @@ mu_I(rho), vectorised.
 }
 \description{
 Probability that an external attacker infers the dominant contribution X1 to
-within +/- beta (Proposition 5 of the paper):
+within +/- beta :
 \verb{mu_I(rho) = F_Z((1+beta)rho - 1) - F_Z((1-beta)rho - 1)}, with Z the
 relative loss at dominance rho.
 }
 \examples{
 assess_risk_I(rho = 0.85, sigma_nu = 0.3, sigma_eps = 0.03, n = 6, beta = 0.2)
+}
+\seealso{
+\link{dominoise-package} paper's proposition 5
 }

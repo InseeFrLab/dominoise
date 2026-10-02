@@ -25,7 +25,7 @@ A \code{ggplot} object.
 Plots the relative deviation actually undergone by each cell against its
 dominance level, and overlays the theoretical envelope predicted before any
 data were touched: the level-\code{level} confidence band of the relative loss
-(Definition 4) and the mean absolute loss (Proposition 3).
+(Definition 4) and the mean absolute loss.
 }
 \details{
 The mechanism being analytical, the cloud of points should fill the band and
@@ -41,4 +41,7 @@ tab <- data.frame(turnover = runif(N, 0,1000), ck = runif(N, 0, 1))
 tab$x1 <- tab$turnover * rhos
 res <- pm_perturb(tab, "turnover", "x1", "ck", params)
 pm_plot_impact(res)
+}
+\seealso{
+\link{dominoise-package} paper's proposition 3
 }

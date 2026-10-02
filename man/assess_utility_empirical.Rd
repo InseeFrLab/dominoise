@@ -22,7 +22,10 @@ theoretical mean absolute loss averaged over the observed dominance.
 }
 \description{
 Measures the perturbation actually undergone by the table, and compares it
-with the theoretical expectation of Proposition 3 evaluated at each cell's
+with the theoretical expectation evaluated at each cell's
 own dominance. A close match is the natural consistency check: the mechanism
 is analytical, so the realised loss should track the predicted one.
+}
+\seealso{
+\link{dominoise-package} paper's proposition 3
 }

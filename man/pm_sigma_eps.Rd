@@ -14,5 +14,8 @@ sigma_eps, vectorised over \code{beta}/\code{tau}.
 }
 \description{
 Closed-form inversion of the worst-case upper bound of the differencing
-risk (Proposition 7 of the paper)
+risk.
+}
+\seealso{
+\link{dominoise-package} paper's proposition 7
 }

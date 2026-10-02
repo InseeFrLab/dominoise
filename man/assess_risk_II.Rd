@@ -21,7 +21,7 @@ mu_II(rho, rho2), vectorised.
 \description{
 Probability that an insider contributing \code{X2} to the aggregate infers the
 dominant contribution \code{X1} to within +/- beta, by subtracting their own
-contribution from the disseminated total (Proposition 5 of the paper):
+contribution from the disseminated total :
 \verb{mu_II(rho, rho2) = F_Z((1+beta)rho + rho2 - 1) - F_Z((1-beta)rho + rho2 - 1)},
 with \code{Z} the relative loss at dominance \code{rho}.
 }
@@ -33,4 +33,7 @@ other contributors, typically \code{rho + rho2 = 0.95}.
 \examples{
 # worst case IIa at rho = 0.5
 assess_risk_II(0.5, 0.5, sigma_nu = 0.4, sigma_eps = 0.031, n = 4, beta = 0.1)
+}
+\seealso{
+\link{dominoise-package} paper's proposition 5
 }
