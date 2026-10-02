@@ -1,9 +1,10 @@
 Package: dominoise
 Title: Parsimonious Noise Perturbation for Magnitude Tables
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person("Julien", "Jamme", email = "julien.jamme@insee.fr",
-           role = c("aut", "cre")),
+           role = c("aut", "cre"), 
+           comment = c(ORCID = "0009-0009-9054-7053")),
     person("Institut national de la statistique et des études économiques",
            role = "cph"))
 Description: Protects magnitude tables, such as tables of enterprise turnover,
@@ -17,8 +18,7 @@ Description: Protects magnitude tables, such as tables of enterprise turnover,
     with decision tables and risk-utility plots, applies the mechanism to an
     aggregated table using SHA-512 hashed random keys for consistency over
     time, and reports the risk and utility actually achieved. The method is
-    described in Jamme (2026)
-    <https://www.researchgate.net/publication/408487480_Parsimonious_perturbation_mechanism_for_magnitude_tables_with_analytical_risk-utility_metrics>.
+    described in Jamme (2027) <doi: 10.1007/978-3-032-37883-5_9>.  
 License: GPL (>= 3)
 URL: https://github.com/InseeFrLab/dominoise, https://inseefrlab.github.io/dominoise/
 BugReports: https://github.com/InseeFrLab/dominoise/issues
@@ -30,12 +30,12 @@ Imports:
     digest,
     assertthat,
     dplyr,
-    rlang,
-    purrr
+    rlang
 Suggests:
-    ggplot2,
+    ggplot2 (>= 3.5.0),
     testthat (>= 3.0.0),
     knitr,
     rmarkdown
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
+Config/testthat/edition: 3
