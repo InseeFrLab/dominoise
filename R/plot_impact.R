@@ -18,7 +18,7 @@
 #' @returns A `ggplot` object.
 #' @seealso [dominoise-package] paper's proposition 3
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("ggplot2", quietly = TRUE)
 #' set.seed(123)
 #' N = 1000
 #' params <- pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)

@@ -32,6 +32,8 @@ the dominance level \code{rho}, one curve per shape parameter \code{n}, panels s
 \code{sigma_nu} (and by \code{scenario} when the table carries several).
 }
 \examples{
+\dontshow{if (requireNamespace("ggplot2", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 grid <- pm_calib_dominance(beta = c(0.1,0.2))
 pm_plot_risk_profile(grid, sigma_nu = c(0.1, 0.2, 0.4, 0.5), beta = 0.2)
+\dontshow{\}) # examplesIf}
 }

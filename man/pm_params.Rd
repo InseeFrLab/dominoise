@@ -20,7 +20,7 @@ pm_params(
 }
 \arguments{
 \item{beta_dominance, tau_dominance}{Accuracy threshold and risk ceiling for
-scenario I (dominance rule). Defaults to 0.2 / 0.5.}
+scenario I (dominance rule). Defaults to 0.2 / 0.9.}
 
 \item{beta_prule, tau_prule, s_prule}{Threshold, ceiling and cumulated share of
 the two largest contributors for scenario II (p\%-rule). \code{s_prule = 0.95}
@@ -34,7 +34,10 @@ scenario. Defaults: 0.05 / 0.95.}
 calibration. Left as \code{NA} until decided.}
 }
 \value{
-pm_params object
+An object of class \code{pm_params}: a list with two elements,
+\code{policy} (sub-lists \code{dominance}, \code{prule} and \code{diff}, each holding the
+accuracy threshold \code{beta} and the risk ceiling \code{tau}, plus \code{s} for \code{prule})
+and \code{mechanism} (\code{sigma_nu}, \code{sigma_eps}, \code{n}).
 }
 \description{
 Create the perturbation-parameter object containing all the parameters

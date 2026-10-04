@@ -12,7 +12,8 @@ assess_risk_diff(sigma_eps, beta)
 \item{beta}{double}
 }
 \value{
-double vector
+A numeric vector: the upper bound of the differencing risk,
+vectorised over \code{sigma_eps} and \code{beta}.
 }
 \description{
 Compute the upper bound of the differencing risk.

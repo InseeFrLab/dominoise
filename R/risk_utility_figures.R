@@ -74,7 +74,7 @@
 #' @param thresholds Risk levels drawn as dashed horizontal lines.
 #' @returns A `ggplot` object.
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("ggplot2", quietly = TRUE)
 #' grid <- pm_calib_dominance(beta = c(0.1,0.2))
 #' pm_plot_risk_profile(grid, sigma_nu = c(0.1, 0.2, 0.4, 0.5), beta = 0.2)
 pm_plot_risk_profile <- function(x,
@@ -267,7 +267,7 @@ pm_plot_risk_max <- function(x, x_axis = c("sigma_nu", "n"),
 #' @param thresholds Risk levels drawn as dashed horizontal lines.
 #' @returns A `ggplot` object.
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("ggplot2", quietly = TRUE)
 #' grid <- pm_calib_dominance(sigma_eps = 0.031, beta = 0.2)
 #' pm_plot_tradeoff(grid)
 pm_plot_tradeoff <- function(x, loss = c("EZ", "CI"),
@@ -348,6 +348,10 @@ pm_plot_tradeoff <- function(x, loss = c("EZ", "CI"),
 #' @param ... Passed on to the underlying plotting function.
 #' @returns A `ggplot` object.
 #' @exportS3Method plot pm_calib_dominance
+#' @examplesIf requireNamespace("ggplot2", quietly = TRUE)
+#' grid <- pm_calib_dominance(sigma_eps = 0.031, beta = 0.2)
+#' plot(grid)
+#' plot(grid, type = "profile")
 plot.pm_calib_dominance <- function(x, type = c("tradeoff", "profile", "worst"),
                                     ...) {
   type <- match.arg(type)

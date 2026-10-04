@@ -23,8 +23,7 @@
 #' intermediate dominance. The reported losses are there to settle it.
 #'
 #' @param params Optional `pm_params`; supplies `sigma_eps`, `beta` and `tau`.
-#' @param sigma_nu Numeric vector of candidate values. Default
-#'   `seq(0.05, 0.5, 0.05)`.
+#' @param sigma_nu Numeric vector of candidate values. Default `(1:10) / 20`.
 #' @param beta,tau Scenario-I threshold and ceiling. Default to the `dominance`
 #'   policy of `params`.
 #' @param sigma_eps Fixed differencing noise. Defaults to
@@ -36,7 +35,7 @@
 #' @param integer If `TRUE`, round `n_max` down to an integer -- the only
 #'   conservative rounding, the risk being increasing in `n`.
 #' @param level Confidence level for the reported CI loss (default 0.95).
-#' @param rho Grid used to locate the worst case. Default `seq(0.001, 1, 0.001)`.
+#' @param rho Grid used to locate the worst case. Default `(1:1000) / 1000`.
 #' @returns A `data.frame` with one row per `sigma_nu`: `n_max`,
 #'   `risk_at_n_max`, and the information loss at `rho = 1` and at the dominance
 #'   threshold `1 - beta`. `n_max` is `NA` when no `n` meets the ceiling (raise

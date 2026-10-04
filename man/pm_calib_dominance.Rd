@@ -19,11 +19,10 @@ pm_calib_dominance(
 default to its values.}
 
 \item{sigma_nu, n}{Numeric vectors of candidate values. Default to
-\code{seq(0.05, 0.5, 0.05)} and \code{seq(3, 12, 0.5)}.}
+\code{(1:5) / 10} and \code{seq(3, 12, by = 3)}.}
 
 \item{beta}{Accuracy threshold(s) of scenario I. Default to the \code{dominance}
-policy of \code{params}, or to \code{c(0.05, 0.1, 0.15, 0.2, 0.25)} (as in the
-differencing step).}
+policy of \code{params}, or to \code{c(0.1, 0.2)}.}
 
 \item{sigma_eps}{Fixed differencing noise. Default to
 \code{params$mechanism$sigma_eps}, or \code{0} when no \code{params} is given.}
@@ -31,12 +30,14 @@ differencing step).}
 \item{level}{Confidence level for the CI loss metric (default 0.95).}
 
 \item{rho}{Internal grid of dominance levels used to locate the worst case.
-Default \code{seq(0, 1, 0.02)}.}
+Default \code{(1:50) / 50}.}
 }
 \value{
 A \code{data.frame} of class \code{pm_calib_dominance}, one row per
-\verb{(sigma_nu, n, beta, sigma_eps)}, with columns \code{risk_max}, \code{rho_at_max},
-\code{EZ_max}, \code{CI_max} (the last two in percent).
+\verb{(rho, sigma_nu, sigma_eps, n, beta)}, with columns \code{risk} (scenario-I
+risk), \code{EZ} and \code{CI} (information loss, in percent). The confidence level
+is stored in the \code{level} attribute. Use \code{\link[=summary]{summary()}} for the worst case
+over \code{rho} of each parameter combination.
 }
 \description{
 Theoretical, data-free. For every candidate \verb{(sigma_nu, n, beta, sigma_eps)},

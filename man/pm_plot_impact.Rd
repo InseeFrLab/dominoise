@@ -33,6 +33,7 @@ straddle the mean lines. That agreement is the natural consistency check
 between what was promised at calibration time and what the table received.
 }
 \examples{
+\dontshow{if (requireNamespace("ggplot2", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 set.seed(123)
 N = 1000
 params <- pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
@@ -41,6 +42,7 @@ tab <- data.frame(turnover = runif(N, 0,1000), ck = runif(N, 0, 1))
 tab$x1 <- tab$turnover * rhos
 res <- pm_perturb(tab, "turnover", "x1", "ck", params)
 pm_plot_impact(res)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \link{dominoise-package} paper's proposition 3

@@ -27,12 +27,12 @@ A \code{data.frame} with columns \code{ck_nu}, \code{ck_eps}, \code{nu}, \code{e
 \description{
 Implements Definitions 6-7 of the paper. From the cell key \code{CK}, the name of
 the indicator and the aggregation operation, two distinct strings are built
--- one per draw -- and hashed with SHA-512. Each digest is mapped to a
+-- one per draw -- and hashed with \code{SHA-512}. Each digest is mapped to a
 uniform draw in ]0;1[, then turned into a Gaussian draw by quantile
-inversion: \code{nu} from N(0, sigma_nu^2) and \code{eps} from N(0, sigma_eps^2).
+inversion: \code{nu} from \code{N(0, sigma_nu^2)} and \code{eps} from \code{N(0, sigma_eps^2)}.
 }
 \details{
-Determinism, avalanche effect and uniformity of SHA-512
+Determinism, avalanche effect and uniformity of \code{SHA-512}
 ensure that the same cell always receives the same perturbation, while draws
 remain uncorrelated across indicators and between \code{nu} and \code{eps}.
 }

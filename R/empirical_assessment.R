@@ -27,6 +27,16 @@
 #'   deviation, quantiles, maximum, relative RMSE, exceedance rates, and the
 #'   theoretical mean absolute loss averaged over the observed dominance.
 #' @seealso [dominoise-package] paper's proposition 3
+#' @examples
+#' set.seed(123)
+#' para <- suppressMessages(
+#'   pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
+#' )
+#' tab <- data.frame(turnover = runif(500, 100, 1000), ck = runif(500))
+#' tab$x1 <- tab$turnover * runif(500, 0.2, 1)
+#' tab$x2 <- (tab$turnover - tab$x1) * runif(500)
+#' res <- pm_perturb(tab, "turnover", "x1", "ck", para, x2 = "x2")
+#' assess_utility_empirical(res)
 #' @export
 assess_utility_empirical <- function(x, by = NULL, thresholds = c(5, 10, 20)) {
 
@@ -94,6 +104,17 @@ assess_utility_empirical <- function(x, by = NULL, thresholds = c(5, 10, 20)) {
 #' @returns A `data.frame` with the number of cells, the observed success rate
 #'   (in percent), the mean theoretical risk, and the maximum theoretical risk.
 #' @seealso [dominoise-package] paper's proposition 7
+#' @examples
+#' set.seed(123)
+#' para <- suppressMessages(
+#'   pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
+#' )
+#' tab <- data.frame(turnover = runif(500, 100, 1000), ck = runif(500))
+#' tab$x1 <- tab$turnover * runif(500, 0.2, 1)
+#' tab$x2 <- (tab$turnover - tab$x1) * runif(500)
+#' res <- pm_perturb(tab, "turnover", "x1", "ck", para, x2 = "x2")
+#' assess_risk_empirical(res, scenario = "I")
+#' assess_risk_empirical(res, scenario = "II")
 #' @export
 assess_risk_empirical <- function(x, scenario = c("I", "II"), beta = NULL,
                                   by = NULL) {

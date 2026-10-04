@@ -43,6 +43,8 @@ Generalised on the choice of the risk metric only: pick the scenario with
 plotted at a time.
 }
 \examples{
+\dontshow{if (requireNamespace("ggplot2", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 grid <- pm_calib_dominance(sigma_eps = 0.031, beta = 0.2)
 pm_plot_tradeoff(grid)
+\dontshow{\}) # examplesIf}
 }

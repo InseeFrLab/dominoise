@@ -28,7 +28,7 @@ the \code{dominance} policy already stored in \code{params}.}
 \item{level}{Confidence level for the reported CI loss (default 0.95).}
 
 \item{rho}{Grid used to locate the worst case over rho.
-Default \code{seq(0.001, 1, 0.001)}.}
+Default \code{(1:1000) / 1000}.}
 }
 \value{
 The updated \code{pm_params}, invisibly.

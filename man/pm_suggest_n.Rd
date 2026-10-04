@@ -20,8 +20,7 @@ pm_suggest_n(
 \arguments{
 \item{params}{Optional \code{pm_params}; supplies \code{sigma_eps}, \code{beta} and \code{tau}.}
 
-\item{sigma_nu}{Numeric vector of candidate values. Default
-\code{seq(0.05, 0.5, 0.05)}.}
+\item{sigma_nu}{Numeric vector of candidate values. Default \code{(1:10) / 20}.}
 
 \item{beta, tau}{Scenario-I threshold and ceiling. Default to the \code{dominance}
 policy of \code{params}.}
@@ -40,7 +39,7 @@ conservative rounding, the risk being increasing in \code{n}.}
 
 \item{level}{Confidence level for the reported CI loss (default 0.95).}
 
-\item{rho}{Grid used to locate the worst case. Default \code{seq(0.001, 1, 0.001)}.}
+\item{rho}{Grid used to locate the worst case. Default \code{(1:1000) / 1000}.}
 }
 \value{
 A \code{data.frame} with one row per \code{sigma_nu}: \code{n_max},

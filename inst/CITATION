@@ -5,9 +5,6 @@ citHeader(
 )
 
 ## --- the method ------------------------------------------------------------
-## PSD 2026 proceedings (Springer, Lecture Notes in Computer Science).
-## TODO once the proceedings are out: fill in `volume`, `pages` and `doi`,
-## and drop the `url` in favour of the doi.
 bibentry(
   bibtype   = "InProceedings",
   title     = paste("Parsimonious Perturbation Mechanism for Magnitude Tables",
@@ -19,6 +16,7 @@ bibentry(
   series    = "Lecture Notes in Computer Science",
   volume    = "16925",
   pages     = "130--146",
+  publisher = "Springer",
   address   = "Cham",
   year      = "2027",
   doi       = "10.1007/978-3-032-37883-5_9",

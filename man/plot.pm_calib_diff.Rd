@@ -16,7 +16,7 @@ which loss metric to use on the x-axis.}
 \item{...}{Ignored, for compatibility with the \code{plot()} generic.}
 }
 \value{
-The \code{ggplot} object, invisibly.
+A \code{ggplot} object.
 }
 \description{
 Draws the risk-utility frontier of the differencing step: the level risk ceiling \code{tau}
@@ -25,5 +25,7 @@ Draws the risk-utility frontier of the differencing step: the level risk ceiling
 one curve per \code{beta}.
 }
 \examples{
+\dontshow{if (requireNamespace("ggplot2", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 plot(pm_calib_diff())
+\dontshow{\}) # examplesIf}
 }

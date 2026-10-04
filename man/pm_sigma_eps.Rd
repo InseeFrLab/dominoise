@@ -2,7 +2,7 @@
 % Please edit documentation in R/calibration_differencing.R
 \name{pm_sigma_eps}
 \alias{pm_sigma_eps}
-\title{Smallest sigma_eps guaranteeing the differencing-risk ceiling}
+\title{Smallest \code{sigma_eps} guaranteeing the differencing-risk ceiling}
 \usage{
 pm_sigma_eps(beta, tau)
 }
@@ -10,12 +10,17 @@ pm_sigma_eps(beta, tau)
 \item{beta, tau}{Numeric. Accuracy threshold and risk ceiling.}
 }
 \value{
-sigma_eps, vectorised over \code{beta}/\code{tau}.
+A numeric vector of \code{sigma_eps} values, vectorised over
+\code{beta}/\code{tau}.
 }
 \description{
 Closed-form inversion of the worst-case upper bound of the differencing
 risk.
 }
+\examples{
+pm_sigma_eps(beta = 0.05, tau = 0.95)
+pm_sigma_eps(beta = c(0.05, 0.1), tau = 0.9)
+}
 \seealso{
-\link{dominoise-package} paper's proposition 7
+\link{dominoise-package} (Proposition 7 of the paper).
 }

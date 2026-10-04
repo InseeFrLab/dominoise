@@ -22,18 +22,19 @@
 #' @param params Optional `pm_params`. When supplied, `sigma_eps` and `beta`
 #'   default to its values.
 #' @param sigma_nu,n Numeric vectors of candidate values. Default to
-#'   `seq(0.05, 0.5, 0.05)` and `seq(3, 12, 0.5)`.
+#'   `(1:5) / 10` and `seq(3, 12, by = 3)`.
 #' @param beta Accuracy threshold(s) of scenario I. Default to the `dominance`
-#'   policy of `params`, or to `c(0.05, 0.1, 0.15, 0.2, 0.25)` (as in the
-#'   differencing step).
+#'   policy of `params`, or to `c(0.1, 0.2)`.
 #' @param sigma_eps Fixed differencing noise. Default to
 #'   `params$mechanism$sigma_eps`, or `0` when no `params` is given.
 #' @param level Confidence level for the CI loss metric (default 0.95).
 #' @param rho Internal grid of dominance levels used to locate the worst case.
-#'   Default `seq(0, 1, 0.02)`.
+#'   Default `(1:50) / 50`.
 #' @returns A `data.frame` of class `pm_calib_dominance`, one row per
-#'   `(sigma_nu, n, beta, sigma_eps)`, with columns `risk_max`, `rho_at_max`,
-#'   `EZ_max`, `CI_max` (the last two in percent).
+#'   `(rho, sigma_nu, sigma_eps, n, beta)`, with columns `risk` (scenario-I
+#'   risk), `EZ` and `CI` (information loss, in percent). The confidence level
+#'   is stored in the `level` attribute. Use [summary()] for the worst case
+#'   over `rho` of each parameter combination.
 #' @export
 #' @examples
 #' # default exploration
@@ -123,9 +124,12 @@ pm_calib_dominance <- function(
 #' @param object A `pm_calib_dominance` table.
 #' @param ... Ignored.
 #' @returns A `data.frame` of class `pm_calib_dominance_summary`, with columns
-#'   `sigma_nu`, `sigma_eps`, `n`, `beta`, `rho_at_max`, `risk_max`,
+#'   `sigma_nu`, `sigma_eps`, `n`, `beta`, `rho_at_max_risk`, `risk_max`,
 #'   `EZ_min`, `EZ_max`, `CI_min`, `CI_max` (losses in percent).
 #' @exportS3Method
+#' @examples
+#' grid <- pm_calib_dominance(sigma_nu = c(0.3, 0.4), n = c(3, 6), beta = 0.2)
+#' summary(grid)
 summary.pm_calib_dominance <- function(object, ...) {
   d <- as.data.frame(object)
 
@@ -216,7 +220,7 @@ print.pm_calib_dominance <- function(x, rows = 8, ...) {
 #'   the `dominance` policy already stored in `params`.
 #' @param level Confidence level for the reported CI loss (default 0.95).
 #' @param rho Grid used to locate the worst case over rho.
-#'   Default `seq(0.001, 1, 0.001)`.
+#'   Default `(1:1000) / 1000`.
 #' @returns The updated `pm_params`, invisibly.
 #' @export
 #' @examples

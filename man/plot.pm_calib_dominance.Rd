@@ -20,3 +20,10 @@ A \code{ggplot} object.
 \description{
 Thin dispatcher over the three calibration plots.
 }
+\examples{
+\dontshow{if (requireNamespace("ggplot2", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+grid <- pm_calib_dominance(sigma_eps = 0.031, beta = 0.2)
+plot(grid)
+plot(grid, type = "profile")
+\dontshow{\}) # examplesIf}
+}

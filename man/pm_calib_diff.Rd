@@ -2,29 +2,33 @@
 % Please edit documentation in R/calibration_differencing.R
 \name{pm_calib_diff}
 \alias{pm_calib_diff}
-\title{Calibration of the differencing noise (sigma_epsilon)}
+\title{Calibration of the differencing noise (\code{sigma_epsilon})}
 \usage{
 pm_calib_diff(params = NULL, beta = NULL, tau = NULL, level = 0.95)
 }
 \arguments{
-\item{params}{object pm_params}
+\item{params}{object \code{pm_params}}
 
-\item{beta}{real vector of beta values (accuracy level of the inference)}
+\item{beta}{real vector of \code{beta} values (accuracy level of the inference)}
 
-\item{tau}{real vector of tau values (ceiling risk level)}
+\item{tau}{real vector of \code{tau} values (ceiling risk level)}
 
-\item{level}{confidence level for the confidence intervall of the relative loss}
+\item{level}{confidence level for the confidence interval of the relative loss}
 }
 \value{
-data.frame and pm_calib_diff object
+A \code{data.frame} of class \code{pm_calib_diff}, one row per \verb{(beta, tau)}
+couple, with columns \code{beta}, \code{tau}, \code{sigma_eps}, and the loss floor it
+implies at \code{rho -> 0}: \code{EZ} (mean absolute loss) and \code{CI} (upper bound of
+the \code{level} confidence interval), both in percent. The confidence level is
+stored in the \code{level} attribute.
 }
 \description{
-Calibration of the differencing noise (sigma_epsilon)
+Calibration of the differencing noise (\code{sigma_epsilon})
 }
 \details{
 By default, the function returns the results for some beta and tau values
 beta in (0.05, 0.1, 0.15, 0.2, 0.25) and
-tau in s(0.5, 0.55, 0.6, 0.65, ..., 0.90, 0.95)
+tau in (0.5, 0.55, 0.6, ..., 0.90, 0.95)
 }
 \examples{
 # default behaviour

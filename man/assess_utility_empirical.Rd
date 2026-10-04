@@ -26,6 +26,17 @@ with the theoretical expectation evaluated at each cell's
 own dominance. A close match is the natural consistency check: the mechanism
 is analytical, so the realised loss should track the predicted one.
 }
+\examples{
+set.seed(123)
+para <- suppressMessages(
+  pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
+)
+tab <- data.frame(turnover = runif(500, 100, 1000), ck = runif(500))
+tab$x1 <- tab$turnover * runif(500, 0.2, 1)
+tab$x2 <- (tab$turnover - tab$x1) * runif(500)
+res <- pm_perturb(tab, "turnover", "x1", "ck", para, x2 = "x2")
+assess_utility_empirical(res)
+}
 \seealso{
 \link{dominoise-package} paper's proposition 3
 }

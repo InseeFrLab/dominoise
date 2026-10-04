@@ -9,7 +9,8 @@
 #' @param sigma_eps double
 #' @param beta double
 #'
-#' @returns double vector
+#' @returns A numeric vector: the upper bound of the differencing risk,
+#'   vectorised over `sigma_eps` and `beta`.
 #' @seealso [dominoise-package] paper's proposition 7
 #' @export
 #' @importFrom stats pnorm

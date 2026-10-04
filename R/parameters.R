@@ -3,7 +3,7 @@
 #' of the noise.
 #'
 #' @param beta_dominance,tau_dominance Accuracy threshold and risk ceiling for
-#'   scenario I (dominance rule). Defaults to 0.2 / 0.5.
+#'   scenario I (dominance rule). Defaults to 0.2 / 0.9.
 #' @param beta_prule,tau_prule,s_prule Threshold, ceiling and cumulated share of
 #'   the two largest contributors for scenario II (p%-rule). `s_prule = 0.95`
 #'   is the relaxed case IIb in the paper; `1` would be the worst case IIa.
@@ -12,8 +12,10 @@
 #'   scenario. Defaults: 0.05 / 0.95.
 #' @param sigma_nu,sigma_eps,n Mechanism parameters, filled in during
 #'   calibration. Left as `NA` until decided.
-#'
-#' @returns pm_params object
+#' @returns An object of class `pm_params`: a list with two elements,
+#'   `policy` (sub-lists `dominance`, `prule` and `diff`, each holding the
+#'   accuracy threshold `beta` and the risk ceiling `tau`, plus `s` for `prule`)
+#'   and `mechanism` (`sigma_nu`, `sigma_eps`, `n`).
 #' @export
 #'
 #' @examples
@@ -41,12 +43,12 @@ pm_params <- function(beta_dominance = 0.2,  tau_dominance = 0.9,
 }
 
 
-#' Method to print pm_params object
+#' Method to print `pm_params` object
 #'
-#' @param x pm_params object
+#' @param x `pm_params` object
 #' @param ... Ignored
 #'
-#' @returns pm_params object x
+#' @returns `x`, invisibly.
 #' @exportS3Method
 #' @keywords internal
 #'

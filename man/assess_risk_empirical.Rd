@@ -35,6 +35,18 @@ The differencing scenario is not assessed here: it bears on pairs of cells,
 not on single cells, and is controlled a priori by the upper bound of the
 metric.
 }
+\examples{
+set.seed(123)
+para <- suppressMessages(
+  pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
+)
+tab <- data.frame(turnover = runif(500, 100, 1000), ck = runif(500))
+tab$x1 <- tab$turnover * runif(500, 0.2, 1)
+tab$x2 <- (tab$turnover - tab$x1) * runif(500)
+res <- pm_perturb(tab, "turnover", "x1", "ck", para, x2 = "x2")
+assess_risk_empirical(res, scenario = "I")
+assess_risk_empirical(res, scenario = "II")
+}
 \seealso{
 \link{dominoise-package} paper's proposition 7
 }

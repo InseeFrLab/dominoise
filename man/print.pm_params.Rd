@@ -2,20 +2,20 @@
 % Please edit documentation in R/parameters.R
 \name{print.pm_params}
 \alias{print.pm_params}
-\title{Method to print pm_params object}
+\title{Method to print \code{pm_params} object}
 \usage{
 \method{print}{pm_params}(x, ...)
 }
 \arguments{
-\item{x}{pm_params object}
+\item{x}{\code{pm_params} object}
 
 \item{...}{Ignored}
 }
 \value{
-pm_params object x
+\code{x}, invisibly.
 }
 \description{
-Method to print pm_params object
+Method to print \code{pm_params} object
 }
 \examples{
 para <- pm_params()

@@ -7,15 +7,19 @@
 
 
 
-#' Smallest sigma_eps guaranteeing the differencing-risk ceiling
+#' Smallest `sigma_eps` guaranteeing the differencing-risk ceiling
 #'
 #' Closed-form inversion of the worst-case upper bound of the differencing
 #' risk.
 #'
 #' @param beta,tau Numeric. Accuracy threshold and risk ceiling.
-#' @return sigma_eps, vectorised over `beta`/`tau`.
-#' @seealso [dominoise-package] paper's proposition 7
+#' @returns A numeric vector of `sigma_eps` values, vectorised over
+#'   `beta`/`tau`.
+#' @seealso [dominoise-package] (Proposition 7 of the paper).
 #' @export
+#' @examples
+#' pm_sigma_eps(beta = 0.05, tau = 0.95)
+#' pm_sigma_eps(beta = c(0.05, 0.1), tau = 0.9)
 pm_sigma_eps <- function(beta, tau) {
   stopifnot(all(beta > 0), all(tau > 0 & tau < 1))
   beta / stats::qnorm((1 + tau) / 2)
@@ -28,20 +32,24 @@ pm_sigma_eps <- function(beta, tau) {
     ci = stats::qnorm((1 + level) / 2))  # upper CI upper bound == ci * sigma_eps
 }
 
-#' Calibration of the differencing noise (sigma_epsilon)
+#' Calibration of the differencing noise (`sigma_epsilon`)
 #'
-#' @param params object pm_params
-#' @param beta real vector of beta values (accuracy level of the inference)
-#' @param tau real vector of tau values (ceiling risk level)
-#' @param level confidence level for the confidence intervall of the relative loss
+#' @param params object `pm_params`
+#' @param beta real vector of `beta` values (accuracy level of the inference)
+#' @param tau real vector of `tau` values (ceiling risk level)
+#' @param level confidence level for the confidence interval of the relative loss
 #'
-#' @returns data.frame and pm_calib_diff object
+#' @returns A `data.frame` of class `pm_calib_diff`, one row per `(beta, tau)`
+#'   couple, with columns `beta`, `tau`, `sigma_eps`, and the loss floor it
+#'   implies at `rho -> 0`: `EZ` (mean absolute loss) and `CI` (upper bound of
+#'   the `level` confidence interval), both in percent. The confidence level is
+#'   stored in the `level` attribute.
 #' @export
 #'
 #' @details
 #' By default, the function returns the results for some beta and tau values
 #' beta in (0.05, 0.1, 0.15, 0.2, 0.25) and
-#' tau in s(0.5, 0.55, 0.6, 0.65, ..., 0.90, 0.95)
+#' tau in (0.5, 0.55, 0.6, ..., 0.90, 0.95)
 #'
 #'
 #' @examples
@@ -105,9 +113,9 @@ pm_calib_diff <- function(params = NULL, beta = NULL, tau = NULL, level = 0.95) 
 #' `"EZ"` (for expectation of the absolute relative loss |Z|):
 #' which loss metric to use on the x-axis.
 #' @param ... Ignored, for compatibility with the `plot()` generic.
-#' @return The `ggplot` object, invisibly.
+#' @return A `ggplot` object.
 #' @exportS3Method
-#' @examples
+#' @examplesIf requireNamespace("ggplot2", quietly = TRUE)
 #' plot(pm_calib_diff())
 plot.pm_calib_diff <- function(x, loss = c("CI", "EZ"), ...) {
   loss <- match.arg(loss)

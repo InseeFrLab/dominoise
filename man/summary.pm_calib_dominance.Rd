@@ -13,7 +13,7 @@
 }
 \value{
 A \code{data.frame} of class \code{pm_calib_dominance_summary}, with columns
-\code{sigma_nu}, \code{sigma_eps}, \code{n}, \code{beta}, \code{rho_at_max}, \code{risk_max},
+\code{sigma_nu}, \code{sigma_eps}, \code{n}, \code{beta}, \code{rho_at_max_risk}, \code{risk_max},
 \code{EZ_min}, \code{EZ_max}, \code{CI_min}, \code{CI_max} (losses in percent).
 }
 \description{
@@ -23,4 +23,8 @@ peaks and its value, and the range of the information loss: the minimum
 (smallest rho of the grid) and the maximum (rho = 1), in both metrics --
 expectation E|Z| and upper CI bound. The loss is monotone increasing in rho,
 so these are read at the extreme rho rows of each group.
+}
+\examples{
+grid <- pm_calib_dominance(sigma_nu = c(0.3, 0.4), n = c(3, 6), beta = 0.2)
+summary(grid)
 }
