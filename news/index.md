@@ -25,7 +25,8 @@ evolve until 1.0.0.
 
 ### Internal
 
-- `purrr` is no longer a dependency. Unit tests added.
+- `purrr` and `dplyr` are no longer a dependency.
+- Unit tests added.
 
 ## dominoise 0.1.0
 
