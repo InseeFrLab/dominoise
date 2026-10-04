@@ -133,17 +133,25 @@ pm_calib_dominance <- function(
 summary.pm_calib_dominance <- function(object, ...) {
   d <- as.data.frame(object)
 
-  sm <- d |>
-    dplyr::group_by(sigma_nu, sigma_eps, n, beta) |>
-    dplyr::summarise(
-      rho_at_max_risk = rho[risk == max(risk)][1],
-      risk_max = max(risk),
-      EZ_min = min(EZ),
-      EZ_max = max(EZ),
-      CI_min = min(CI),
-      CI_max = max(CI),
-      .groups = "drop"
+  key <- c("sigma_nu", "sigma_eps", "n", "beta")
+  parts <- split(d, d[key], drop = TRUE)
+  sm <- do.call(
+    rbind,
+    lapply(
+      parts,
+      function(g) {
+        i <- which.max(g$risk) # first rho reaching the max
+        data.frame(
+          g[1, key, drop = FALSE],
+          rho_at_max_risk = g$rho[i],
+          risk_max = g$risk[i],
+          EZ_min = min(g$EZ), EZ_max = max(g$EZ),
+          CI_min = min(g$CI), CI_max = max(g$CI)
+        )
+      }
     )
+  )
+  sm <- sm[do.call(order, unname(as.list(sm[key]))), ]
 
   rownames(sm) <- NULL
   attr(sm, "level") <- attr(object, "level")

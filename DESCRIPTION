@@ -31,7 +31,6 @@ Imports:
     utils,
     digest,
     assertthat,
-    dplyr,
     rlang
 Suggests:
     ggplot2 (>= 3.5.0),

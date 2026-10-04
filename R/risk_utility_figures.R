@@ -176,9 +176,9 @@ pm_plot_risk_max <- function(x, x_axis = c("sigma_nu", "n"),
   # worst case over rho, per parameter combination
   grp <- c("sigma_nu", "sigma_eps", "n", "beta",
            if ("scenario" %in% names(d)) "scenario")
-  sm <- d |>
-    dplyr::group_by(dplyr::across(dplyr::all_of(grp))) |>
-    dplyr::summarise(risk_max = max(.data$risk), .groups = "drop")
+
+  sm <- stats::aggregate(d["risk"], by = d[grp], FUN = max)
+  names(sm)[names(sm) == "risk"] <- "risk_max"
 
   # swap the roles of the two parameters
   if (x_axis == "n") {
