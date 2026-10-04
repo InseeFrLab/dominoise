@@ -20,7 +20,8 @@ assess_risk_diff(sigma_eps, beta)
 
 ## Value
 
-double vector
+A numeric vector: the upper bound of the differencing risk, vectorised
+over `sigma_eps` and `beta`.
 
 ## See also
 

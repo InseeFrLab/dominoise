@@ -28,5 +28,17 @@ summary(object, ...)
 ## Value
 
 A `data.frame` of class `pm_calib_dominance_summary`, with columns
-`sigma_nu`, `sigma_eps`, `n`, `beta`, `rho_at_max`, `risk_max`,
+`sigma_nu`, `sigma_eps`, `n`, `beta`, `rho_at_max_risk`, `risk_max`,
 `EZ_min`, `EZ_max`, `CI_min`, `CI_max` (losses in percent).
+
+## Examples
+
+``` r
+grid <- pm_calib_dominance(sigma_nu = c(0.3, 0.4), n = c(3, 6), beta = 0.2)
+summary(grid)
+#>  sigma_nu sigma_eps n beta rho_at_max_risk risk_max EZ_min EZ_max CI_min CI_max
+#>       0.3         0 3  0.2            0.92    0.543      0 23.937  0.000 58.799
+#>       0.3         0 6  0.2            0.90    0.653      0 23.937  0.000 58.799
+#>       0.4         0 3  0.2            0.88    0.443      0 31.915  0.001 78.399
+#>       0.4         0 6  0.2            0.88    0.563      0 31.915  0.000 78.399
+```

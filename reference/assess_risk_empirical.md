@@ -51,3 +51,22 @@ the metric.
 
 [dominoise-package](https://inseefrlab.github.io/dominoise/reference/dominoise-package.md)
 paper's proposition 7
+
+## Examples
+
+``` r
+set.seed(123)
+para <- suppressMessages(
+  pm_commit_dominance(pm_commit_diff(pm_params()), sigma_nu = 0.4, n = 4)
+)
+tab <- data.frame(turnover = runif(500, 100, 1000), ck = runif(500))
+tab$x1 <- tab$turnover * runif(500, 0.2, 1)
+tab$x2 <- (tab$turnover - tab$x1) * runif(500)
+res <- pm_perturb(tab, "turnover", "x1", "ck", para, x2 = "x2")
+assess_risk_empirical(res, scenario = "I")
+#>   scenario beta n_cells observed_pct theo_mean  theo_max
+#> 1        I  0.2     500         13.4 0.1360245 0.4822485
+assess_risk_empirical(res, scenario = "II")
+#>   scenario beta n_cells observed_pct theo_mean  theo_max
+#> 1       II  0.1     500         15.4 0.1615296 0.8464624
+```

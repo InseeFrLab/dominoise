@@ -15,9 +15,15 @@ Choosing sigma_eps from the differencing risk ceiling. This parameter
 also sets the loss floor borne by every cell.
 
 - [`pm_calib_diff()`](https://inseefrlab.github.io/dominoise/reference/pm_calib_diff.md)
-  : Calibration of the differencing noise (sigma_epsilon)
+  :
+
+  Calibration of the differencing noise (`sigma_epsilon`)
+
 - [`pm_sigma_eps()`](https://inseefrlab.github.io/dominoise/reference/pm_sigma_eps.md)
-  : Smallest sigma_eps guaranteeing the differencing-risk ceiling
+  :
+
+  Smallest `sigma_eps` guaranteeing the differencing-risk ceiling
+
 - [`pm_commit_diff()`](https://inseefrlab.github.io/dominoise/reference/pm_commit_diff.md)
   : Commit the differencing decision into the parameter object
 

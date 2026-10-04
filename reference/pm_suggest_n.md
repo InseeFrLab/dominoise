@@ -33,7 +33,7 @@ pm_suggest_n(
 
 - sigma_nu:
 
-  Numeric vector of candidate values. Default `seq(0.05, 0.5, 0.05)`.
+  Numeric vector of candidate values. Default `(1:10) / 20`.
 
 - beta, tau:
 
@@ -66,7 +66,7 @@ pm_suggest_n(
 
 - rho:
 
-  Grid used to locate the worst case. Default `seq(0.001, 1, 0.001)`.
+  Grid used to locate the worst case. Default `(1:1000) / 1000`.
 
 ## Value
 

@@ -1,6 +1,6 @@
-# Method to print pm_params object
+# Method to print `pm_params` object
 
-Method to print pm_params object
+Method to print `pm_params` object
 
 ## Usage
 
@@ -13,7 +13,7 @@ print(x, ...)
 
 - x:
 
-  pm_params object
+  `pm_params` object
 
 - ...:
 
@@ -21,7 +21,7 @@ print(x, ...)
 
 ## Value
 
-pm_params object x
+`x`, invisibly.
 
 ## Examples
 

@@ -27,3 +27,12 @@ plot(x, type = c("tradeoff", "profile", "worst"), ...)
 ## Value
 
 A `ggplot` object.
+
+## Examples
+
+``` r
+grid <- pm_calib_dominance(sigma_eps = 0.031, beta = 0.2)
+plot(grid)
+
+plot(grid, type = "profile")
+```

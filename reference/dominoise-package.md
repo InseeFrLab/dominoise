@@ -6,13 +6,13 @@ component and a general-purpose one, governed by three parameters only.
 Information loss and disclosure risks for three attack scenarios
 (external inference, internal inference and differencing) are available
 in closed form, so that calibration requires neither simulation nor
-recalibration on the data. The package guides that calibration step by
+re-estimation on the data. The package guides that calibration step by
 step, from the differencing noise to the dominance parameters, with
 decision tables and risk-utility plots, applies the mechanism to an
 aggregated table using SHA-512 hashed random keys for consistency over
 time, and reports the risk and utility actually achieved. The method is
-described in Jamme (2027) [doi:
-10.1007/978-3-032-37883-5_9](https://doi.org/%2010.1007/978-3-032-37883-5_9)
+described in Jamme (2027)
+[doi:10.1007/978-3-032-37883-5_9](https://doi.org/10.1007/978-3-032-37883-5_9)
 .
 
 ## References

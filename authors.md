@@ -27,6 +27,7 @@ Cham. https://doi.org/10.1007/978-3-032-37883-5_9
       series = {Lecture Notes in Computer Science},
       volume = {16925},
       pages = {130--146},
+      publisher = {Springer},
       address = {Cham},
       year = {2027},
       doi = {10.1007/978-3-032-37883-5_9},

@@ -35,14 +35,13 @@ pm_calib_dominance(
 
 - sigma_nu, n:
 
-  Numeric vectors of candidate values. Default to `seq(0.05, 0.5, 0.05)`
-  and `seq(3, 12, 0.5)`.
+  Numeric vectors of candidate values. Default to `(1:5) / 10` and
+  `seq(3, 12, by = 3)`.
 
 - beta:
 
   Accuracy threshold(s) of scenario I. Default to the `dominance` policy
-  of `params`, or to `c(0.05, 0.1, 0.15, 0.2, 0.25)` (as in the
-  differencing step).
+  of `params`, or to `c(0.1, 0.2)`.
 
 - sigma_eps:
 
@@ -56,13 +55,16 @@ pm_calib_dominance(
 - rho:
 
   Internal grid of dominance levels used to locate the worst case.
-  Default `seq(0, 1, 0.02)`.
+  Default `(1:50) / 50`.
 
 ## Value
 
 A `data.frame` of class `pm_calib_dominance`, one row per
-`(sigma_nu, n, beta, sigma_eps)`, with columns `risk_max`, `rho_at_max`,
-`EZ_max`, `CI_max` (the last two in percent).
+`(rho, sigma_nu, sigma_eps, n, beta)`, with columns `risk` (scenario-I
+risk), `EZ` and `CI` (information loss, in percent). The confidence
+level is stored in the `level` attribute. Use
+[`summary()`](https://rdrr.io/r/base/summary.html) for the worst case
+over `rho` of each parameter combination.
 
 ## Details
 

@@ -46,7 +46,7 @@ pm_commit_dominance(
 - rho:
 
   Grid used to locate the worst case over rho. Default
-  `seq(0.001, 1, 0.001)`.
+  `(1:1000) / 1000`.
 
 ## Value
 

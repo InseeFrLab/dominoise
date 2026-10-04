@@ -25,9 +25,9 @@ evolve until 1.0.0.
 
 ### Internal
 
-- purrr is no longer a dependency. Unit tests added.
+- `purrr` is no longer a dependency. Unit tests added.
 
-## dominoise 0.1.0 (development version)
+## dominoise 0.1.0
 
 First working version of the package. The API is still unstable:
 function names and arguments may change without deprecation until

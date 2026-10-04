@@ -1,6 +1,6 @@
-# Calibration of the differencing noise (sigma_epsilon)
+# Calibration of the differencing noise (`sigma_epsilon`)
 
-Calibration of the differencing noise (sigma_epsilon)
+Calibration of the differencing noise (`sigma_epsilon`)
 
 ## Usage
 
@@ -12,29 +12,33 @@ pm_calib_diff(params = NULL, beta = NULL, tau = NULL, level = 0.95)
 
 - params:
 
-  object pm_params
+  object `pm_params`
 
 - beta:
 
-  real vector of beta values (accuracy level of the inference)
+  real vector of `beta` values (accuracy level of the inference)
 
 - tau:
 
-  real vector of tau values (ceiling risk level)
+  real vector of `tau` values (ceiling risk level)
 
 - level:
 
-  confidence level for the confidence intervall of the relative loss
+  confidence level for the confidence interval of the relative loss
 
 ## Value
 
-data.frame and pm_calib_diff object
+A `data.frame` of class `pm_calib_diff`, one row per `(beta, tau)`
+couple, with columns `beta`, `tau`, `sigma_eps`, and the loss floor it
+implies at `rho -> 0`: `EZ` (mean absolute loss) and `CI` (upper bound
+of the `level` confidence interval), both in percent. The confidence
+level is stored in the `level` attribute.
 
 ## Details
 
 By default, the function returns the results for some beta and tau
-values beta in (0.05, 0.1, 0.15, 0.2, 0.25) and tau in s(0.5, 0.55, 0.6,
-0.65, ..., 0.90, 0.95)
+values beta in (0.05, 0.1, 0.15, 0.2, 0.25) and tau in (0.5, 0.55, 0.6,
+..., 0.90, 0.95)
 
 ## Examples
 

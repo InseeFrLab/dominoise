@@ -32,7 +32,7 @@ plot(x, loss = c("CI", "EZ"), ...)
 
 ## Value
 
-The `ggplot` object, invisibly.
+A `ggplot` object.
 
 ## Examples
 

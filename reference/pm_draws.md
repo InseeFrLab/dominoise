@@ -2,10 +2,10 @@
 
 Implements Definitions 6-7 of the paper. From the cell key `CK`, the
 name of the indicator and the aggregation operation, two distinct
-strings are built – one per draw – and hashed with SHA-512. Each digest
-is mapped to a uniform draw in \]0;1\[, then turned into a Gaussian draw
-by quantile inversion: `nu` from N(0, sigma_nu^2) and `eps` from N(0,
-sigma_eps^2).
+strings are built – one per draw – and hashed with `SHA-512`. Each
+digest is mapped to a uniform draw in \]0;1\[, then turned into a
+Gaussian draw by quantile inversion: `nu` from `N(0, sigma_nu^2)` and
+`eps` from `N(0, sigma_eps^2)`.
 
 ## Usage
 
@@ -45,8 +45,8 @@ A `data.frame` with columns `ck_nu`, `ck_eps`, `nu`, `eps`.
 
 ## Details
 
-Determinism, avalanche effect and uniformity of SHA-512 ensure that the
-same cell always receives the same perturbation, while draws remain
+Determinism, avalanche effect and uniformity of `SHA-512` ensure that
+the same cell always receives the same perturbation, while draws remain
 uncorrelated across indicators and between `nu` and `eps`.
 
 ## See also

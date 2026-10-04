@@ -25,7 +25,7 @@ pm_params(
 - beta_dominance, tau_dominance:
 
   Accuracy threshold and risk ceiling for scenario I (dominance rule).
-  Defaults to 0.2 / 0.5.
+  Defaults to 0.2 / 0.9.
 
 - beta_prule, tau_prule, s_prule:
 
@@ -46,7 +46,10 @@ pm_params(
 
 ## Value
 
-pm_params object
+An object of class `pm_params`: a list with two elements, `policy`
+(sub-lists `dominance`, `prule` and `diff`, each holding the accuracy
+threshold `beta` and the risk ceiling `tau`, plus `s` for `prule`) and
+`mechanism` (`sigma_nu`, `sigma_eps`, `n`).
 
 ## Examples
 
