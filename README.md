@@ -10,6 +10,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![R-CMD-check](https://github.com/InseeFrLab/dominoise/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/InseeFrLab/dominoise/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/dominoise)](https://CRAN.R-project.org/package=dominoise)
+[![CRAN
+checks](https://badges.cranchecks.info/worst/dominoise.svg)](https://cran.r-project.org/web/checks/check_results_dominoise.html)
 <!-- badges: end -->
 
 Protect magnitude tables — turnover, payroll, output — against
@@ -21,9 +25,11 @@ recalibration on the data.
 
 ## Installation
 
-Development version:
-
 ``` r
+# From CRAN
+install.packages("dominoise")
+
+# Development version from GitHub
 # install.packages("remotes")
 remotes::install_github("InseeFrLab/dominoise")
 ```
