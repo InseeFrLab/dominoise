@@ -11,7 +11,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/InseeFrLab/dominoise/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/InseeFrLab/dominoise/blob/v0.2.0/inst/CITATION)
 
 Jamme, J. (2027). Parsimonious Perturbation Mechanism for Magnitude
 Tables with Analytical Risk-Utility Metrics. In: Domingo-Ferrer, J.,
