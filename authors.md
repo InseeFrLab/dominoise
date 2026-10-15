@@ -11,7 +11,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/InseeFrLab/dominoise/blob/v0.2.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/InseeFrLab/dominoise/blob/main/inst/CITATION)
 
 Jamme, J. (2027). Parsimonious Perturbation Mechanism for Magnitude
 Tables with Analytical Risk-Utility Metrics. In: Domingo-Ferrer, J.,
@@ -34,13 +34,13 @@ Cham. https://doi.org/10.1007/978-3-032-37883-5_9
     }
 
 Jamme, J. (2026). dominoise: Parsimonious Noise Perturbation for
-Magnitude Tables. R package version 0.2.0.
+Magnitude Tables. R package version 0.2.0.9000.
 https://github.com/InseeFrLab/dominoise
 
     @Manual{,
       title = {{dominoise}: Parsimonious Noise Perturbation for Magnitude Tables},
       author = {Julien Jamme},
       year = {2026},
-      note = {R package version 0.2.0},
+      note = {R package version 0.2.0.9000},
       url = {https://github.com/InseeFrLab/dominoise},
     }

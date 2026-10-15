@@ -9,10 +9,12 @@ recalibration on the data.
 
 ## Installation
 
-Development version:
-
 ``` r
 
+# From CRAN
+install.packages("dominoise")
+
+# Development version from GitHub
 # install.packages("remotes")
 remotes::install_github("InseeFrLab/dominoise")
 ```

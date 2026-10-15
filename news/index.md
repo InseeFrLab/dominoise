@@ -1,5 +1,7 @@
 # Changelog
 
+## dominoise (development version)
+
 ## dominoise 0.2.0
 
 First CRAN release. The method is unchanged from 0.1.0 and follows the
